@@ -1,0 +1,780 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Программа "ТРУБА"</title>
+
+    <LINK rel="stylesheet" href="css/template1.css" type="text/css" />
+    <SCRIPT type="text/javascript" src="js/jquery.min.js"> </SCRIPT>
+
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+
+    <script type="text/javascript" src="js/script_atme.js"></script>
+
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+</head>
+
+
+<body>
+    <div class="all_pages">
+        <form id="calc_form" class="calc_form" name="form_calculate">
+            <!--<div class="pnkt">
+            <h4>Исходные данные </h4>
+            </div>-->
+            <nav class="four">
+                <ul class="topmenu">
+                    <li class="a_other"><a href="#" id="open_my_file"><img id="img_key" src="./image/key.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                    </li>
+                    <li class="a_base"><a href="#">ИСХОДНЫЕ ДАННЫЕ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#" id="link_1">ТРАНШЕЯ</a></li>
+                            <li><a href="#" id="link_2">ГНБ</a></li>
+
+                            <li><a href="#" id="link_3">НАСТРОЙКИ</a></li>
+                        </ul>
+                    </li>
+                    <li class="a_base"><a href="#" id="no_link_1" class="calc_all">РАСЧЕТ</a><i
+                            class="fa fa-angle-down"></i></li>
+
+                    <li class="a_base"><a href="#">РЕЗУЛЬТАТЫ РАСЧЕТОВ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#" id="link_5">ТРАНШЕЯ</a></li>
+                            <li><a href="#" id="link_6">ГНБ</a></li>
+                        </ul>
+                    </li>
+                    <li class="a_other"><a href="#" id="link_7"><img id="img_disk" src="./image/floppy.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                </ul>
+
+            </nav>
+
+            <div id="field1">
+                <div id="but_down">
+                    <input type="button" id="prev" name="prev" value="    <<   ">
+                </div>
+                <div id="but_up">
+                    <input type="button" id="next" name="next" value="   >>    ">
+                </div>
+            </div>
+            <div id="div_7">
+                <div>
+                    <h3>СОХРАНЕНИЕ И ЗАГРУЗКА</h3>
+                </div>
+                <hr>
+                <div class="field">
+
+                    <strong>Сохранить в файл:</strong>
+                    <input type="text" id="my_file_name" name="my_file_name" size="14"
+                        placeholder="Введите имя файла" />
+                    <input type="button" id="save" name="save123" value="Сохранить" />
+                </div>
+
+                <hr>
+                <div class="field">
+                    <div class="helper1">
+                        <div class="helper">
+                            <strong>Загрузить из файла: </strong>
+
+                            <div class="file_upload">
+
+                                <div> </div>
+                                <input type="text" id="name_to_file" value="" placeholder="Выберите файл">
+                                <input type="file" id="fileToLoad" accept="text/plain">
+                            </div>
+                            <button type="button" id="vibor">Загрузить</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div id="div_4">
+                <div>
+                    <h3 id="unvis">.</h3>
+                </div>
+
+                <p class="a_base"><a href="#" class="calc_all">РАСЧЕТ</a><i class="fa fa-angle-down"></i>
+                </p>
+
+            </div>
+            <div id="div_8">
+                <div class="field">
+                    <strong>Секущий модуль грунта Es, МПА:</strong>
+                    <input type="text" id="gn_modul" name="gn_modul" size="2" class="weidth_r" value="0"
+                        onblur="if(value=='NaN') value = '0'" /><br />
+                </div>
+                <input type="text" id="kod_unvis" name="kod_unvis" />
+            </div>
+            <!--Настройки-->
+            <div id="div_3">
+                <div>
+                    <h3>НАСТРОЙКИ</h3>
+                </div>
+                <hr>
+                <b>Свойства трубы</b>
+
+                <div class="field">
+                    <strong>Коэффициент трения &#956 при тяжении трубы, о.е.:</strong>
+                    <input type="text" id="n_miu" name="n_miu" class="weidth_r" size="2" value="0.2"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong>Коэффициент запаса F/Fмакс при тяжении трубы, о.е.:</strong>
+                    <input type="text" id="n_F_Fmax" name="n_F_Fmax" class="weidth_r" size="2" value="0.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value> 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong>Коэффициент запаса P/Pмакс при давлении бентонита, о.е.:</strong>
+                    <input type="text" id="n_P_Pmax" name="n_P_Pmax" class="weidth_r" size="2" value="0.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value> 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong>Предел текучести трубы &#963 при тяжении, МПА:</strong>
+                    <input type="text" id="n_sigma" name="n_sigma" class="weidth_r" size="2" value="21"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong>Модуль упругости трубы Е при сжатии, МПА:</strong>
+                    <input type="text" id="n_E" name="n_E" class="weidth_r" size="2" value="950" autocomplete="off" />
+                </div>
+
+                <hr>
+                <b>Свойства грунта</b>
+
+
+
+
+                <div class="field">
+                    <strong>Коэффициент крепости грунта f при ГНБ, о.е.:</strong>
+                </div>
+
+                <div class="field">
+                    <strong> &nbsp&nbsp - сильный плывун:</strong>
+                    <input type="text" id="n_type1" name="n_type1" class="weidth_r" size="2" value="0.1"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - болотистый грунт:</strong>
+                    <input type="text" id="n_type2" name="n_type2" class="weidth_r" size="2" value="0.3"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - земля или песок:</strong>
+                    <input type="text" id="n_type3" name="n_type3" class="weidth_r" size="2" value="0.5"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - легкий суглинок:</strong>
+                    <input type="text" id="n_type4" name="n_type4" class="weidth_r" size="2" value="0.6"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - песчанистая глина:</strong>
+                    <input type="text" id="n_type5" name="n_type5" class="weidth_r" size="2" value="0.8"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - плотная глина:</strong>
+                    <input type="text" id="n_type6" name="n_type6" class="weidth_r" size="2" value="1.0"
+                        autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - отвердевшая глина:</strong>
+                    <input type="text" id="n_type7" name="n_type7" class="weidth_r" size="2" value="1.5"
+                        autocomplete="off" />
+                </div>
+
+
+                <div class="field">
+                    <strong>Удельный вес грунта &#961г, т/м3:</strong>
+                    <input type="text" id="n_pho" name="n_pho" class="weidth_r" size="2" value="2" autocomplete="off" />
+                </div>
+                <hr>
+                <b>Свойства буровой установки</b>
+
+
+                <div class="field">
+                    <strong>Диаметр расширителя Dрш/Dэкв при ГНБ, о.е.:</strong>
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - длина бурового канала Lгнб менее 49 м:</strong>
+                    <input type="text" id="n_short" name="n_short" class="weidth_r" size="2" value="1.2"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - длина бурового канала Lгнб от 50 до 99 м:</strong>
+                    <input type="text" id="n_medium" name="n_medium" class="weidth_r" size="2" value="1.3"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - длина бурового канала Lгнб от 100 до 299 м:</strong>
+                    <input type="text" id="n_long" name="n_long" class="weidth_r" size="2" value="1.4"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong> &nbsp&nbsp - длина бурового канала Lгнб более 300 м:</strong>
+                    <input type="text" id="n_very_long" name="n_very_long" class="weidth_r" size="2" value="1.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+
+                <div class="field">
+                    <strong>Удельный вес бентонита &#961б, т/м3:</strong>
+                    <input type="text" id="n_pho_b" name="n_pho_b" class="weidth_r" size="2" value="1.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; " />
+                </div>
+                <div class="field">
+                    <strong>Избыточное давление бентонита Ри, кПа (кН/м2): </strong>
+                    <input type="text" id="n_Pi" name="n_Pi" class="weidth_r" size="2" value="200" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''; " />
+                </div>
+
+                <hr>
+                <div class="butt"><input type="button" id="m_default" name="m_default" value="Вернуть настройки" />
+                </div>
+
+
+
+            </div>
+
+
+            <!--ГНБ Расчет-->
+            <div id="div_6">
+                <div>
+                    <h3>ГНБ. РАСЧЕТЫ</h3>
+                </div>
+                <hr>
+
+                <b>Итоговые параметры трубы</b>
+
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2:</strong>
+                    <select id="gnb1_SN_mas" name="gnb1_SN_mas" class="weidth_select">
+                        <option value="gnb1_SN_mas_0" selected>--
+                    </select>
+                </div>
+
+                <div class="field">
+                    <strong>Наружный диаметр трубы D, мм:</strong>
+                    <input type="text" id="gnb1_D" name="gnb1_D" class="weidth_r" size="2" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Толщина стенки трубы е, мм:</strong>
+                    <input type="text" id="gnb1_e" name="gnb1_e" class="weidth_r" size="2" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Предельное усилие тяжения трубы Fмакс, кН:</strong>
+                    <input type="text" id="gnb1_Fmax" name="gnb1_Fmax" class="weidth_r" size="2" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Внутренний диаметр трубы Dв, мм:</strong>
+                    <input type="text" id="gnb1_Dv" name="gnb1_Dv" class="weidth_r" size="2" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Отношение Dв/dэкв, о.е.:</strong>
+                    <input type="text" id="gnb1_Dv_dekv" name="gnb1_Dv_dekv" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+
+
+                <b class="bld">Труба полимерная термостойкая</b>
+                <br>
+                <b class="bld">ПРОТЕКТОРФЛЕКС</b> <b class="bld" id="gnb1_type_end"></b>&nbsp; <b class="bld"
+                    id="gnb1_D_end">D</b><b>/</b><b class="bld" id="gnb1_e_end">е</b>&nbsp; <b class="bld"
+                    id="gnb1_SN_end">SN</b>&nbsp; <b class="bld" id="gnb1_Fmax_end">Fмакс</b>&nbsp; <b class="bld"
+                    id="gnb1_T_end">T</b>
+                <br>
+                <b class="bld">ТУ 2248-003-34311042-2015</b>
+                <br>
+                <hr>
+
+
+                <b>Проверка кольцевой жесткости трубы при тяжении</b>
+
+                <div class="field">
+                    <strong>Эквивалентный диаметр Dэкв пучка N труб, мм:</strong>
+                    <input type="text" id="gnb1_Dekv" name="gnb1_Dekv" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Диаметр расширителя Dрш, мм:</strong>
+                    <select id="gnb1_Drsh" name="gnb1_Drsh" class="weidth_select">
+                        <option value="gnb1_Drsh_0" selected>--
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Свод обрушения грунта Hг, м:</strong>
+                    <input type="text" id="gnb1_Hr" name="gnb1_Hr" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Фактическое усилие тяжения каждой трубы F, кН:</strong>
+                    <input type="text" id="gnb1_F" name="gnb1_F" class="weidth_r" size="2" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2, не менее:</strong>
+                    <input type="text" id="gnb1_SN" name="gnb1_SN" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+                <b>Проверка кольцевой жесткости трубы на глубине Hмин</b>
+
+
+
+
+                <div class="field">
+                    <strong>Нагрузка от веса грунта qг, кН/м2:</strong>
+                    <input type="text" id="gnb1_qr_min" name="gnb1_qr_min" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Нагрузка от веса транспорта qт, кН/м2:</strong>
+                    <input type="text" id="gnb1_qt_min" name="gnb1_qt_min" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Суммарная нагрузка на трубу qсум, кН/м2:</strong>
+                    <input type="text" id="gnb1_qsum_min" name="gnb1_qsum_min" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2, не менее:</strong>
+                    <input type="text" id="gnb1_SN_min" name="gnb1_SN_min" class="weidth_r" size="2" disabled />
+                </div>
+
+                <hr>
+                <b>Проверка кольцевой жесткости трубы на глубине Нмакс</b>
+
+                <div class="field">
+                    <strong>Нагрузка от веса грунта qг, кН/м2:</strong>
+                    <input type="text" id="gnb1_qr_max" name="gnb1_qr_max" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Нагрузка от веса транспорта qт, кН/м2:</strong>
+                    <input type="text" id="gnb1_qt_max" name="gnb1_qt_max" class="weidth_r" size="2" value="0"
+                        disabled />
+                </div>
+                <div class="field">
+                    <strong>Суммарная нагрузка на трубу qсум, кН/м2:</strong>
+                    <input type="text" id="gnb1_qsum_max" name="gnb1_qsum_max" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Давление бентонита на трубу Р, кПа (кН/м2):</strong>
+                    <input type="text" id="gnb1_P" name="gnb1_P" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2, не менее:</strong>
+                    <input type="text" id="gnb1_SN_max" name="gnb1_SN_max" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+
+
+
+
+
+            </div>
+
+            <!--ГНБ_Данные-->
+            <div id="div_2">
+                <div>
+                    <h3>ГНБ. ДАННЫЕ</h3>
+                </div>
+                <hr>
+                <b>Кабель</b>
+
+                <div class="field">
+                    <strong>Наружный диаметр кабеля d, мм:</strong>
+                    <input type="text" id="gn_d" name="gn_d" class="weidth_r" size="2" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''" />
+                </div>
+
+                <div class="field">
+                    <strong>Число кабелей в одной трубе n, шт: </strong>
+                    <select id="gn_n" name="gn_n" class="weidth_select">
+                        <option value="gn_n_0" selected>1
+                        <option value="gn_n_1">2
+                        <option value="gn_n_2">3
+                        <option value="gn_n_3">4
+                        <option value="gn_n_4">5
+                        <option value="gn_n_5">6
+                        <option value="gn_n_6">7
+                    </select>
+                </div>
+
+
+                <div class="field">
+                    <strong>Эквивалентный диаметр всех кабелей dэкв, мм:</strong>
+                    <input type="text" id="gn_dekv" name="gn_dekv" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+                <b>Труба</b>
+
+                <div class="field">
+                    <strong>Минимальное отношение Dв/dэкв, о.е.:</strong>
+                    <input type="text" id="gn_dv_dekv" name="gn_dv_dekv" class="weidth_r" size="2" value="1.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+                <div class="field">
+                    <strong>Минимальный внутренний диаметр трубы Dв, мм:</strong>
+                    <input type="text" id="gn_dv_" name="gn_dv_" class="weidth_r" size="2" autocomplete="off"
+                        disabled />
+                </div>
+
+
+                <div class="field">
+                    <strong>Минимальный наружный диаметр трубы D, мм:</strong>
+                    <select id="gn_d_min" name="gn_d_min" class="weidth_select">
+                        <option value="gn_d_min_0" selected>--
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Воздействие транспорта на трубу: </strong>
+                    <select id="gn_transport" name="gn_transport">
+                        <option value="gn_transport_0">отсутствует
+                        <option value="gn_transport_1" selected>автодорога
+                        <option value="gn_transport_1">железная дорога
+                    </select>
+                </div>
+                <hr>
+
+                <b>Особенности трубы</b>
+
+                <div class="field">
+                    <strong>Внешняя защитная оболочка:</strong>
+                    <select id="gn_in_sloy" name="gn_in_sloy" class="weidth_select">
+                        <option value="gn_in_sloy_0" selected>нет
+                        <option value="gn_in_sloy_1">есть
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Внутренний негорючий слой:</strong>
+                    <select id="gn_in_border" name="gn_in_border" class="weidth_select">
+                        <option value="gn_in_border_0" selected>нет
+                        <option value="gn_in_border_1">есть
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Токопоисковые свойства (ОМП):</strong>
+                    <select id="gn_tok_search" name="gn_tok_search" class="weidth_select">
+                        <option value="gn_tok_search_0" selected>нет
+                        <option value="gn_tok_search_1">есть
+                    </select>
+                </div>
+                <hr>
+                <b>ГНБ</b>
+
+
+                <div class="field">
+                    <strong>Характер грунта вокруг трубы: </strong>
+                    <select id="gn_scene" name="gn_scene">
+                        <option value="gn_scene_0">сильный плывун
+                        <option value="gn_scene_1">болотистый грунт
+                        <option value="gn_scene_2" selected>земля или песок
+                        <option value="gn_scene_3">легкий суглинок
+                        <option value="gn_scene_4">песчанистая глина
+                        <option value="gn_scene_5">плотная глина
+                        <option value="gn_scene_6">отвердевшая глина
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Глубина прокладки трубы Нмин, м:</strong>
+                    <input type="text" id="gnb_Hmin" name="gnb_Hmin" class="weidth_r" size="2" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''" />
+                </div>
+                <div class="field">
+                    <strong>Глубина прокладки трубы Нмакс, м:</strong>
+                    <input type="text" id="gnb_Hmax" name="gnb_Hmax" class="weidth_r" size="2" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''" />
+                </div>
+
+
+                <div class="field">
+                    <strong>Секущий модуль грунта Es, МПА:</strong>
+                    <input type="text" id="gnb_modul" name="gnb_modul" size="2" class="weidth_r" value="0"
+                        disabled /><br />
+                </div>
+
+
+                <div class="field">
+                    <strong>Длина бурового канала Lгнб, м:</strong>
+                    <input type="text" id="gnb_L" name="gnb_L" class="weidth_r" size="2" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''" />
+                </div>
+
+                <div class="field">
+                    <strong>Число труб в пучке N, шт: </strong>
+                    <select id="gnb_N" name="gnb_N" class="weidth_select">
+                        <option value="gnb_N_0" selected>1
+                        <option value="gnb_N_1">2
+                        <option value="gnb_N_2">3
+                        <option value="gnb_N_3">4
+                        <option value="gnb_N_4">5
+                        <option value="gnb_N_5">6
+                        <option value="gnb_N_6">7
+                    </select>
+                </div>
+
+
+
+
+
+
+
+
+                <hr>
+                <input type="button" id="clear_gnb" name="clear_gnb" value="Очистить исходные данные"
+                    onclick="clear_gnb_()">
+
+            </div>
+
+
+
+            <!--Траншея Расчет-->
+            <div id="div_5">
+                <div>
+                    <h3>ТРАНШЕЯ. РАСЧЕТЫ</h3>
+                </div>
+                <hr>
+
+                <b>Итоговые параметры трубы</b>
+
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2:</strong>
+                    <select id="tr1_SN_mas" name="tr1_SN_mas" class="weidth_select">
+                        <option value="tr1_SN_mas_0" selected>--
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Наружный диаметр трубы D, мм:</strong>
+                    <input type="text" id="tr1_D" name="tr1_D" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Толщина стенки трубы е, мм:</strong>
+                    <input type="text" id="tr1_e" name="tr1_e" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Предельное усилие тяжения трубы Fмакс, кН:</strong>
+                    <input type="text" id="tr1_Fmax" name="tr1_Fmax" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Внутренний диаметр трубы Dв, мм:</strong>
+                    <input type="text" id="tr1_Dv" name="tr1_Dv" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Отношение Dв/dэкв, о.е.:</strong>
+                    <input type="textarea" id="tr1_Dv_dekv" name="tr1_Dv_dekv" class="weidth_r" size="2" disabled />
+                </div>
+
+                <hr>
+
+
+                <b class="bld">Труба полимерная термостойкая</b>
+                <br>
+                <b class="bld">ПРОТЕКТОРФЛЕКС</b> <b class="bld" id="tr_type_end"></b>&nbsp; <b class="bld"
+                    id="tr_D_end">D</b><b class="bld">/</b><b class="bld" id="tr_e_end">е</b>&nbsp; <b class="bld"
+                    id="tr_SN_end">SN</b>&nbsp; <b class="bld" id="tr_Fmax_end">Fмакс</b>&nbsp; <b class="bld"
+                    id="tr_T_end">T</b>
+                <br>
+                <b class="bld">ТУ 2248-003-34311042-2015</b>
+                <br>
+                <hr>
+
+                <b>Проверка кольцевой жесткости трубы на глубине Н</b>
+
+
+
+                <div class="field">
+                    <strong>Нагрузка от веса грунта qг, кН/м2:</strong>
+                    <input type="text" id="tr1_qg" name="tr1_qg" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Нагрузка от веса транспорта qт, кН/м2:</strong>
+                    <input type="text" id="tr1_qt" name="tr1_qt" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Суммарная нагрузка на трубу qсум, кН/м2:</strong>
+                    <input type="text" id="tr1_qsum" name="tr1_qsum" class="weidth_r" size="2" disabled />
+                </div>
+                <div class="field">
+                    <strong>Кольцевая жесткость трубы SN, кН/м2, не менее:</strong>
+                    <input type="text" id="tr1_SN" name="tr1_SN" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+
+
+
+            </div>
+
+            <!--ТРАНШЕЯ_Данные-->
+            <div id="div_1">
+                <div>
+                    <h3>ТРАНШЕЯ. ДАННЫЕ</h3>
+                </div>
+                <hr>
+                <b>Кабель</b>
+
+
+                <div class="field">
+                    <strong>Наружный диаметр кабеля d, мм: </strong>
+                    <input type="text" id="kt_d" name="kt_d" class="weidth_r" size="2" autocomplete="off"
+                        onblur="if(value=='NaN') value = ''" />
+                </div>
+                <div class="field">
+                    <strong>Число кабелей в одной трубе n, шт: </strong>
+                    <select id="kt_n" name="kt_n" class="weidth_select">
+                        <option value="kt_n_0" selected>1
+                        <option value="kt_n_1">2
+                        <option value="kt_n_2">3
+                        <option value="kt_n_3">4
+                        <option value="kt_n_4">5
+                        <option value="kt_n_5">6
+                        <option value="kt_n_6">7
+                    </select>
+                </div>
+
+                <div class="field">
+                    <strong>Эквивалентный диаметр всех кабелей dэкв, мм:</strong>
+                    <input type="text" id="kt_dekv" name="kt_dekv" class="weidth_r" size="2" disabled />
+                </div>
+                <hr>
+                <b>Труба</b>
+
+                <div class="field">
+                    <strong>Минимальное отношение Dв/dэкв, о.е.:</strong>
+                    <input type="text" id="kt_dv_dekv" name="kt_dv_dekv" class="weidth_r" size="2" value="1.5"
+                        autocomplete="off" onblur="if(value=='NaN') value = ''; if(value< 1) value = '1.0' " />
+                </div>
+
+                <div class="field">
+                    <strong>Минимальный внутренний диаметр трубы Dв, мм:</strong>
+                    <input type="text" id="kt_dv_" name="kt_dv_" class="weidth_r" size="2" autocomplete="off"
+                        disabled />
+                </div>
+                <div class="field">
+                    <strong>Минимальный наружный диаметр трубы D, мм:</strong>
+                    <select id="kt_d_min" name="kt_d_min" class="weidth_select">
+                        <option value="kt_d_min1" selected>--
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Воздействие транспорта на трубу: </strong>
+                    <select id="tr_transport" name="tr_transport">
+                        <option value="tr_transport_0">отсутствует
+                        <option value="tr_transport_1" selected>автодорога
+                        <option value="tr_transport_1">железная дорога
+                    </select>
+                </div>
+                <hr>
+                <b>Особенности трубы</b>
+
+                <div class="field">
+                    <strong>Внешняя защитная оболочка:</strong>
+                    <select id="tr_in_sloy" name="tr_in_sloy" class="weidth_select">
+                        <option value="tr_in_sloy_0" selected>нет
+                        <option value="tr_in_sloy_1">есть
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Внутренний негорючий слой:</strong>
+                    <select id="tr_in_border" name="tr_in_border" class="weidth_select">
+                        <option value="tr_in_border_0" selected>нет
+                        <option value="tr_in_border_1">есть
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Токопоисковые свойства (ОМП):</strong>
+                    <select id="tr_tok_search" name="tr_tok_search" class="weidth_select">
+                        <option value="tr_tok_search_0" selected>нет
+                        <option value="tr_tok_search_1">есть
+                    </select>
+                </div>
+                <hr>
+                <b>Траншея</b>
+                <div class="field">
+                    <strong>Характер грунта вокруг трубы: </strong>
+                    <select id="tr_grunt" name="tr_grunt">
+                        <option value="tr_grunt_0" selected>не песок
+                        <option value="tr_grunt_1">песок, не уплотнен
+                        <option value="tr_grunt_2">песок, уплотнен вручную
+                        <option value="tr_grunt_3">песок, уплотнен механически
+                    </select>
+                </div>
+
+                <div class="field">
+                    <strong>Глубина прокладки трубы Н, м:</strong>
+                    <input type="text" id="tr_h" name="tr_h" class="weidth_r" size="2"
+                        onblur="if(value=='NaN') value = ''" autocomplete="off" />
+                </div>
+
+
+
+                <div class="field">
+                    <strong>Секущий модуль грунта Es, МПА:</strong>
+                    <input type="text" id="tr_modul" name="tr_modul" size="2" class="weidth_r" disabled /><br />
+                </div>
+
+
+
+
+
+                <hr>
+
+
+                <input type="button" id="clear_tr" name="clear_tr" value="Очистить исходные данные"
+                    onclick="clear_tr_()" />
+            </div>
+        </form>
+        <div id="div_0">
+
+            <div>
+                <h3>ПРОГРАММА "ТРУБА"</h3>
+            </div>
+            <hr>
+            <div class="field">
+
+                <strong>Код активации:</strong>
+                <input type="password" id="kod_d" name="kod_d" size="14" value="" onblur="if(value=='NaN') value = ''"
+                    placeholder="Введите код" autocomplete="on" />
+                <input type="button" id="ativated" value="Ввести" />
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Получить код активации: </strong>
+                <input type="button" id="kod_take" name="kod_take" size="14" value="Получить"
+                    onclick="window.open('https://energotek.ru');" autocomplete="on" />
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Запросить консультацию разработчика: </strong>
+                <input type="button" id="konsul" name="konsul" size="14" onblur="if(value=='NaN') value = ''"
+                    value="Запросить" onclick="window.open('http://mvdm.ru/');" autocomplete="on" />
+            </div>
+            <hr>
+
+            <p align="justify">Программа "ТРУБА" предназначена для
+                помощи в выборе полимерных труб
+                ПРОТЕКТОРФЛЕКС, используемых при
+                прокладке кабельных линий номинального
+                напряжения до 500 кВ, выполненных
+                однофазными или трехфазными кабелями.</p>
+            <p align="justify">Выбор труб осуществляется отдельно для
+                каждого из двух вариантов
+                прокладки: для случая размещения труб
+                открытым способом в грунте на дне траншеи и
+                для случая затягивания в грунт в канал,
+                подготовленный при помощи технологии
+                горизонтально-направленного бурения (ГНБ).</p>
+
+            <hr>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>
