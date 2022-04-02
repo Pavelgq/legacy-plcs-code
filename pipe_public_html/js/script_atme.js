@@ -2019,8 +2019,8 @@ function clear_gnb_() {
 
 function decoder() {
   var my_serial = $("#kod_d").val();
-  let url = `http://localhost:8080/api/v1/accept/check/${my_serial}`;
-  // let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/accept/check/${my_serial}`;
+  // let url = `http://localhost:8080/api/v1/accept/check/${my_serial}`;
+  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/accept/check/${my_serial}`;
   let promise = fetch(url);
 
   promise
@@ -2052,8 +2052,8 @@ function decoder() {
  * @param {number} param2
  */
 function sendActionData(actionType, projName, data, param1, param2) {
-  // let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
-  let url = "http://localhost:8080/api/v1/action/add";
+  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
+  // let url = "http://localhost:8080/api/v1/action/add";
   let acceptToken = localStorage.getItem("accept-token") || "";
   let object = {
     project_name: projName,
