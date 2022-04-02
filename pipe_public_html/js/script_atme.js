@@ -91,6 +91,7 @@ var D_e_;
 var math_pred_;
 var D_final = 0;
 
+var $calcEl = $(".calc_all");
 var kod_status = false;
 
 $(document).on("ready", loadpage); // Ждём загрузки страницы
@@ -629,6 +630,7 @@ function loadpage() {
       }
 
       $(".calc_all").on("click", math_all);
+
       $("#kt_d").on("change", math_kt_dekv);
       math_kt_dekv();
       $("#kt_n").on("change", math_kt_dekv);
@@ -823,6 +825,7 @@ function handleChange(input, min, max) {
 function kod_root() {
   $("#kod_unvis").val($("#kod_d").val());
   decoder();
+  $("#kod_d").off("change", kod_root);
 }
 
 function all_round(r, k) {
@@ -2016,8 +2019,8 @@ function clear_gnb_() {
 
 function decoder() {
   var my_serial = $("#kod_d").val();
-  //   let url = `http://localhost:8080/api/v1/accept/check/${my_serial}`;
-  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/accept/check/${my_serial}`;
+  let url = `http://localhost:8080/api/v1/accept/check/${my_serial}`;
+  // let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/accept/check/${my_serial}`;
   let promise = fetch(url);
 
   promise
@@ -2049,8 +2052,8 @@ function decoder() {
  * @param {number} param2
  */
 function sendActionData(actionType, projName, data, param1, param2) {
-  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
-  //   let url = "http://localhost:8080/api/v1/action/add";
+  // let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
+  let url = "http://localhost:8080/api/v1/action/add";
   let acceptToken = localStorage.getItem("accept-token") || "";
   let object = {
     project_name: projName,
