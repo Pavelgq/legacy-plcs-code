@@ -611,6 +611,7 @@ function loadpage() {
     }
   });
   $("#ativated").on("click", activ_my_prog);
+  $(".calc_all").on("click", math_all);
   $("#calc_form").on("change", function () {
     if (!kod_status) {
       // alert("Вы ввели неверный код активации");
@@ -628,8 +629,6 @@ function loadpage() {
         $("#gnb1_SN_mas").on("change", gnb1_e_);
         $("#gnb1_Drsh").on("change", math_gnb1_Hr);
       }
-
-      $(".calc_all").on("click", math_all);
 
       $("#kt_d").on("change", math_kt_dekv);
       math_kt_dekv();
@@ -740,44 +739,47 @@ function loadpage() {
 }
 
 function math_all() {
-  var ge_1 = get_tr_();
-  var ge_2 = get_gnb_();
-  if (get_tr_() && typeof get_tr_() === "number") {
-    /*math_kt_dekv();
+  console.log("math...");
+  if (kod_status) {
+    var ge_1 = get_tr_();
+    var ge_2 = get_gnb_();
+    if (get_tr_() && typeof get_tr_() === "number") {
+      /*math_kt_dekv();
         math_kt_dv_();
         math_fr_modul();*/
 
-    tr1_qt_();
+      tr1_qt_();
 
-    tr1_SN_();
+      tr1_SN_();
 
-    tr1_qg_();
-    tr1_qt_();
-    tr1_e_();
+      tr1_qg_();
+      tr1_qt_();
+      tr1_e_();
 
-    const data = getJson($("form"));
+      const data = getJson($("form"));
 
-    const kt_d = $("#kt_d").val() * 1;
-    const kt_n = document.getElementById("kt_n").options.selectedIndex * 1 + 1;
-    sendActionData("calculation", "No name", JSON.parse(data), kt_d, kt_n);
-  }
-  if (get_gnb_() && typeof get_gnb_() === "number") {
-    /*
+      const kt_d = $("#kt_d").val() * 1;
+      const kt_n =
+        document.getElementById("kt_n").options.selectedIndex * 1 + 1;
+      sendActionData("calculation", "No name", JSON.parse(data), kt_d, kt_n);
+    }
+    if (get_gnb_() && typeof get_gnb_() === "number") {
+      /*
         math_gn_dekv();
         math_gn_dv_();
         math_gn_d_min();
         */
-    math_gnb1_dekv();
-    math_gnb1_Hr();
-    math_gnb1_F();
-    gnb1_e_();
-    math_gnb1_qr_min();
-  }
-  math_kt_dekv();
-  math_kt_dv_();
-  math_fr_modul();
-  //if ($("#div_3").css('display') != 'none' || $("#div_4").css('display') != 'none'){
-  /*
+      math_gnb1_dekv();
+      math_gnb1_Hr();
+      math_gnb1_F();
+      gnb1_e_();
+      math_gnb1_qr_min();
+    }
+    math_kt_dekv();
+    math_kt_dv_();
+    math_fr_modul();
+    //if ($("#div_3").css('display') != 'none' || $("#div_4").css('display') != 'none'){
+    /*
         math_kt_dekv();
         math_kt_dv_();
         tr1_qt_();
@@ -798,7 +800,10 @@ function math_all() {
 
         math_gnb1_qr_min();
         */
-  //}
+    //}
+  } else {
+    alert("Код доступа не активен");
+  }
 }
 
 function handleChange_prev(input, min, max) {
