@@ -2056,7 +2056,7 @@ function decoder() {
  * @param {number} param1
  * @param {number} param2
  */
-function sendActionData(actionType, projName, data, param1, param2) {
+function sendActionDataF(actionType, projName, data, param1, param2) {
   let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
   // let url = "http://localhost:8080/api/v1/action/add";
   let acceptToken = localStorage.getItem("accept-token") || "";
@@ -2088,3 +2088,19 @@ function sendActionData(actionType, projName, data, param1, param2) {
       console.log(answ);
     });
 }
+
+function debounce(f, ms) {
+  let isCooldown = false;
+
+  return function () {
+    if (isCooldown) return;
+
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => (isCooldown = false), ms);
+  };
+}
+
+var sendActionData = debounce(sendActionDataF, 3000);
