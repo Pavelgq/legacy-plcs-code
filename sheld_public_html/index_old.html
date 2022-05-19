@@ -1,0 +1,1284 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Программа "ЭКРАН"</title>
+
+    <LINK rel="stylesheet" href="css/template1.css" type="text/css" />
+    <SCRIPT type="text/javascript" src="js/jquery.min.js"> </SCRIPT>
+
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+    
+    <script type="text/javascript" src="js/script_atme.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
+
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+        
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur', {action: 'sendmail'}).then(function(token) {
+                //console.log(token);
+                document.getElementById('g-recaptcha-response').value=token;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="all_pages">
+        <form id="calc_form1" class="calc_form" name="contact_form">
+            <!--<div class="pnkt">
+                <h4>Исходные данные </h4>
+            </div>-->
+            <nav class="four">
+                <ul class="topmenu">
+                 <li class="a_other"><a href="#" id="open_my_file"><img id="img_key" src="/image/key.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                    </li>
+                    <li class="a_base"><a href="#">ИСХОДНЫЕ ДАННЫЕ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#" id="link_1">СЕТЬ</a></li>
+                            <li><a href="#" id="link_2">КАБЕЛЬ</a></li>
+                            <li><a href="#" id="link_3">ТРАССА</a></li>
+                            <li><a href="#" id="link_4">НАСТРОЙКИ</a></li>
+                        </ul>
+                    </li>
+                    <li class="a_base"><a href="#" id="no_link_1" class="calc_all"  c>РАСЧЕТ</a><i
+                            class="fa fa-angle-down"></i></li>
+                    <li class="a_base"><a href="#">РЕЗУЛЬТАТЫ РАСЧЕТОВ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#" id="link_6">ДВУСТОРОННЕЕ</a></li>
+                            <li><a href="#" id="link_7">ОДНОСТОРОННЕЕ</a></li>
+                            <li><a href="#" id="link_8">ИД. ТРАНСПОЗИЦИЯ</a></li>
+                            <li><a href="#" id="link_9">НЕИД. ТРАНСПОЗИЦИЯ</a></li>
+                            <li><a href="#" id="link_10">ПАРАМЕТРЫ КЛ</a></li>
+                        </ul>
+                    </li>
+                    <li class="a_other"><a href="#" id="link_11"><img id="img_disk" src="/image/floppy.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                </ul>
+            </nav>
+            <div id="field1">
+                <div id="but_down">
+                    <input type="button" id="prev" name="prev" value="    <<   ">
+                </div>
+                <div id="but_up">
+                    <input type="button" id="next" name="next" value="   >>    ">
+                </div>
+            </div>
+
+            <div id="div_5">
+                    <div>
+                            <h3 id="unvis">.</h3>
+                        </div>
+        
+                        <p class="a_base"><a href="#"  class="calc_all">РАСЧЕТ</a><i class="fa fa-angle-down"></i>
+                        </p>
+            </div>
+            <div id="div_11">
+                <!--Для чего-то еще-->
+                <div>
+                        <h3>СОХРАНЕНИЕ И ЗАГРУЗКА</h3>
+                    </div>
+		<hr>
+                <div class="field">
+
+                    <strong>Сохранить в файл:</strong>
+                    <input type="text" id="my_file_name" name="my_file_name" size="14" placeholder="Введите имя файла"/>
+                    <input type="button" id="save" name="save123" value="Сохранить" />
+                </div>
+    
+                <hr>
+                <div class="field">
+                        <div class="helper1">
+                            <div class="helper">
+                                <strong>Загрузить из файла: </strong>
+                                <div class="file_upload">
+                                    <div> </div>
+                                    <input type="text" id="name_to_file" value="" placeholder="Выберите файл" >
+                                    <input type="file" id="fileToLoad" accept="text/plain">
+                 <script src="https://www.google.com/recaptcha/api.js?render=6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur', {action: 'sendmail'}).then(function(token) {
+                //console.log(token);
+                document.getElementById('g-recaptcha-response').value=token;
+            });
+        });
+    </script>
+                   </div>
+                                <button type="button" id="vibor">Загрузить</button>
+                            </div>
+                        </div>
+                    </div>
+                <hr>
+            </div>
+            <div id="div_12">
+
+                    <input type="text" id="kod_unvis" name="kod_unvis" />
+            </div>
+
+
+            <!--**********************************************************-->
+            <!--************************ПАРАМЕТРЫ*************************-->
+            <!--**********************************************************-->
+            <div id="div_10">
+                <div>
+                    <h3>ПАРАМЕТРЫ КАБЕЛЬНОЙ ЛИНИИ</h3>
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Способ заземления экранов:</strong>
+                    <select id="param_ek_ground" name="param_ek_ground" class="param_ek_ground">
+                        <!--<option value="space">-->
+                        <option value="norm_reg_1_8" selected>двустороннее
+                        <option value="norm_reg_2_8">одностороннее
+                        <option value="norm_reg_2_8">транспозиция
+                    </select>
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Активное сопротивление R1, Ом/км:</strong>
+                    <input type="text" id="param_r1" name="param_r1" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Активное сопротивление R0, Ом/км:</strong>
+                    <input type="text" id="param_r0" name="param_r0" value="--" size="3" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Индуктивное сопротивление X1, Ом/км:</strong>
+                    <input type="text" id="param_x1" name="param_x1" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Индуктивное сопротивление X0, Ом/км:</strong>
+                    <input type="text" id="param_x0" name="param_x0" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Индуктивность L1, мГн/км:</strong>
+                    <input type="text" id="param_l1" name="param_l1" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Индуктивность L0, мГн/км:</strong>
+                    <input type="text" id="param_l0" name="param_l0" value="--" size="3" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Емкостное сопротивление Xс1=Xс0, МОм/км:</strong>
+                    <input type="text" id="param_xx" name="param_xx" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Емкость С1=С0, мкФ/км:</strong>
+                    <input type="text" id="param_cc" name="param_cc" value="--" size="3" disabled />
+                </div>
+                <div class="field">
+                    <strong>Емкостный ток Iс1=Iс0, А/км:</strong>
+                    <input type="text" id="param_ic" name="param_ic" value="--" size="3" disabled />
+                </div>
+                <hr>
+            </div>
+            <!--**********************************************************-->
+            <!--********************НЕИД.ТРАНСПОЗИЦИЯ*********************-->
+            <!--**********************************************************-->
+            <div id="div_9">
+                <div>
+                    <h3>НЕИДЕАЛЬНАЯ ТРАНСПОЗИЦИЯ</h3>
+                </div>
+                <hr>
+                
+                <div class="field">
+                    <strong>Число полных циклов транспозиции экрана, шт.:</strong>
+                    <select id="ne_trans" name="ne_trans" class="ne_trans">
+                        <!--<option value="space">-->
+                        <option value="neid_n1" selected>1
+                        <option value="neid_n2">2
+                        <option value="neid_n3">3
+                        <option value="neid_n4">4
+                        <option value="neid_n5">5
+                        <option value="neid_n6">6
+                    </select>
+                </div>
+                <hr>
+                <div class="parts_cicle1">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №1:</strong>
+
+                    </div>
+                    <div class="field">
+                        <strong>Часть 1.1:</strong>
+                        <b> </b><input type="text" id="with_n1_1" class="lala" name="with_n1_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n1_1" class="lala" name="befor_n1_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 1.2:</strong>
+                        <b> </b><input type="text" id="with_n1_2" class="lala" name="with_n1_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n1_2" class="lala" name="befor_n1_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 1.3:</strong>
+                        <b> </b><input type="text" id="with_n1_3" class="lala" name="with_n1_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n1_3" class="lala" name="befor_n1_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="parts_cicle2">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №2:</strong>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 2.1:</strong>
+                        <b> </b><input type="text" id="with_n2_1" class="lala" name="with_n2_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n2_1" class="lala" name="befor_n2_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 2.2:</strong>
+                        <b> </b><input type="text" id="with_n2_2" class="lala" name="with_n2_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n2_2" class="lala" name="befor_n2_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 2.3:</strong>
+                        <b> </b><input type="text" id="with_n2_3" class="lala" name="with_n2_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n2_3" class="lala" name="befor_n2_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="parts_cicle3">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №3:</strong>
+
+                    </div>
+                    <div class="field">
+                        <strong>Часть 3.1:</strong>
+                        <b> </b><input type="text" id="with_n3_1" class="lala" name="with_n3_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n3_1" class="lala" name="befor_n3_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 3.2:</strong>
+                        <b> </b><input type="text" id="with_n3_2" class="lala" name="with_n3_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n3_2" class="lala" name="befor_n3_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 3.3:</strong>
+                        <b> </b><input type="text" id="with_n3_3" class="lala" name="with_n3_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n3_3" class="lala" name="befor_n3_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="parts_cicle4">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №4:</strong>
+
+                    </div>
+                    <div class="field">
+                        <strong>Часть 4.1:</strong>
+                        <b> </b><input type="text" id="with_n4_1" class="lala" name="with_n4_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n4_1" class="lala" name="befor_n4_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 4.2:</strong>
+                        <b> </b><input type="text" id="with_n4_2" class="lala" name="with_n4_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n4_2" class="lala" name="befor_n4_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 4.3:</strong>
+                        <b> </b><input type="text" id="with_n4_3" class="lala" name="with_n4_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n4_3" class="lala" name="befor_n4_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="parts_cicle5">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №5:</strong>
+
+                    </div>
+                    <div class="field">
+                        <strong>Часть 5.1:</strong>
+                        <b> </b><input type="text" id="with_n5_1" class="lala" name="with_n5_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n5_1" class="lala" name="befor_n5_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 5.2:</strong>
+                        <b> </b><input type="text" id="with_n5_2" class="lala" name="with_n5_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n5_2" class="lala" name="befor_n5_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 5.3:</strong>
+                        <b> </b><input type="text" id="with_n5_3" class="lala" name="with_n5_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n5_3" class="lala" name="befor_n5_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="parts_cicle6">
+                    <div class="field">
+                        <strong>Номера участков кабеля, образующих 3 части цикла №6:</strong>
+
+                    </div>
+                    <div class="field">
+                        <strong>Часть 6.1:</strong>
+                        <b> </b><input type="text" id="with_n6_1" class="lala" name="with_n6_1" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n6_1" class="lala" name="befor_n6_1" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 6.2:</strong>
+                        <b> </b><input type="text" id="with_n6_2" class="lala" name="with_n6_2" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n6_2" class="lala" name="befor_n6_2" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Часть 6.3:</strong>
+                        <b> </b><input type="text" id="with_n6_3" class="lala" name="with_n6_3" size="1" value=""
+                            onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                        <b>по </b><input type="text" id="befor_n6_3" class="lala" name="befor_n6_3" class="before" size="1"
+                            value="" onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 30);" autocomplete="off"/>
+                    </div>
+                </div>
+
+                <div class="butt"><input type="button" id="but3" name="send3" value="Расчет неид. транспозиции" /></div>
+
+                <hr>
+                <div class="field">
+                    <strong>Детализация по конкретному циклу транспозиции:</strong>
+                    <select id="ne_trans_select" name="ne_trans_select" class="ne_trans_select">
+                        <!--<option value="space">-->
+                        <option value="norm_reg_0_8" selected>вся КЛ
+                        <option value="norm_reg_1_8">цикл №1
+                        <option value="norm_reg_2_8">цикл №2
+                        <option value="norm_reg_3_8">цикл №3
+                        <option value="norm_reg_4_8">цикл №4
+                        <option value="norm_reg_5_8">цикл №5
+                        <option value="norm_reg_6_8">цикл №6
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Коэффициент транспозиции Кт, о.е.:</strong>
+                    <input type="text" id="neid_kt" name="neid_kt" size="3" value="--" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Выбор нормального режима:</strong>
+                    <select id="neid_reg" name="neid_reg" class="neid_reg">
+                        <!--<option value="space">-->
+                        <option value="neid_reg1" selected>режим №1
+                        <option value="neid_reg2">режим №2
+                        <option value="neid_reg3">режим №3
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Ток в жиле Iж, А:</strong>
+                    <input type="text" id="neid_ig" name="neid_ig" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Наведенный ток в экране Iэ, А:</strong>
+                    <input type="text" id="neid_ie" name="neid_ie" size="3" value="--" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Отношение Iэ/Iж, о.е.:</strong>
+                    <input type="text" id="neid_ieig" name="neid_ieig" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Отношение Pэ/Pж, о.е.:</strong>
+                    <input type="text" id="neid_rerg" name="neid_rerg" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Коэффициент использования Ки, о.е.:</strong>
+                    <input type="text" id="neid_ki" name="neid_ki" size="3" value="--" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Потери в экранах трех фаз 3Рэ, кВт:</strong>
+                    <input type="text" id="neid_3pe" name="neid_3pe" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Стоимость потерь в экранах трех фаз, тыс.руб/год:</strong>
+                    <input type="text" id="neid_ce" name="neid_ce" size="3" value="--" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Напряжение Uэ в нормальном режиме, В:</strong>
+                    <input type="text" id="neid_ue" name="neid_ue" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Напряжение Uэ при внешнем трехфазном КЗ, кВ:</strong>
+                    <input type="text" id="neid_uk3" name="neid_uk3" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Напряжение Uэ при внешнем однофазном КЗ, кВ:</strong>
+                    <input type="text" id="neid_uk1" name="neid_uk1" size="3" value="--" disabled />
+                </div>
+
+                <hr>
+
+            </div>
+            <!--**********************************************************-->
+            <!--**********************ИД.ТРАНСПОЗИЦИЯ*********************-->
+            <!--**********************************************************-->
+            <div id="div_8">
+                <div>
+                    <h3>ИДЕАЛЬНАЯ ТРАНСПОЗИЦИЯ</h3>
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Число полных циклов транспозиции экрана, шт.:</strong>
+                    <select id="id_n" name="id_n" class="id_n">
+                        <!--<option value="space">-->
+                        <option value="idn_reg_1" selected>1
+                        <option value="idn_reg_2">2
+                        <option value="idn_reg_3">3
+                        <option value="idn_reg_4">4
+                        <option value="idn_reg_5">5
+                        <option value="idn_reg_6">6
+                    </select>
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Выбор нормального режима:</strong>
+                    <select id="id_reg" name="id_reg" class="id_reg">
+                        <!--<option value="space">-->
+                        <option value="id_reg_1" selected>режим №1
+                        <option value="id_reg_2">режим №2
+                        <option value="id_reg_3">режим №3
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Ток в жиле Iж, А:</strong>
+                    <input type="text" id="id_ig" name="id_ig" size="3" value="--" disabled />
+                </div>
+
+                <div class="field">
+                    <strong>Наведенный ток в экране Iэ, А:</strong>
+                    <input type="text" id="id_ie" name="id_ie" size="3" value="0" disabled />
+                </div>
+                <hr />
+                <div class="field">
+                    <strong>Отношение Iэ/Iж, о.е.:</strong>
+                    <input type="text" id="id_ieig" name="id_ieig" size="3" value="0" disabled />
+                </div>
+                <div class="field">
+                    <strong>Отношение Pэ/Pж, о.е.:</strong>
+                    <input type="text" id="id_rerg" name="id_rerg" size="3" value="0" disabled />
+                </div>
+                <div class="field">
+                    <strong>Коэффициент использования Ки, о.е.:</strong>
+                    <input type="text" id="id_ki" name="id_ki" size="3" value="1" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Потери в экранах трех фаз 3Рэ, кВт:</strong>
+                    <input type="text" id="id_3re" name="id_3re" size="3" value="0" disabled />
+                </div>
+                <div class="field">
+                    <strong>Стоимость потерь в экранах трех фаз, тыс.руб/год:</strong>
+                    <input type="text" id="id_ce" name="id_ce" size="3" value="0" disabled />
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Напряжение Uэ в нормальном режиме, В:</strong>
+                    <input type="text" id="id_ue" name="id_ue" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Напряжение Uэ при внешнем трехфазном КЗ, кВ:</strong>
+                    <input type="text" id="id_uk3" name="id_uk3" size="3" value="--" disabled />
+                </div>
+                <div class="field">
+                    <strong>Напряжение Uэ при внешнем однофазном КЗ, кВ:</strong>
+                    <input type="text" id="id_uk1" name="id_uk1" size="3" value="--" disabled />
+                </div>
+
+
+                <hr />
+            </div>
+            <!--**********************************************************-->
+            <!--***********************Одностороннее***********************-->
+            <!--**********************************************************-->
+            <div id="div_7">
+                <div>
+                    <h3>ОДНОСТОРОННЕЕ ЗАЗЕМЛЕНИЕ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Число односторонне заземленных секций экрана, шт.:</strong>
+                        <select id="single_k" name="single_k" class="single_k">
+                            <!--<option value="space">-->
+                            <option value="single_k_1" selected>1
+                            <option value="single_k_2">2
+                            <option value="single_k_3">3
+                            <option value="single_k_4">4
+                            <option value="single_k_5">5
+                            <option value="single_k_6">6
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Выбор нормального режима:</strong>
+                        <select id="single_reg" name="single_reg" class="single_reg">
+                            <!--<option value="space">-->
+                            <option value="single_reg_1" selected>режим №1
+                            <option value="single_reg_2">режим №2
+                            <option value="single_reg_3">режим №3
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Ток в жиле Iж, А:</strong>
+                        <input type="text" id="single_ig" name="single_ig" size="3" value="--" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Наведенный ток в экране Iэ, А:</strong>
+                        <input type="text" id="single_ie" name="single_ie" size="3" value="0" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Отношение Iэ/Iж, о.е.:</strong>
+                        <input type="text" id="single_ieig" name="single_ieig" size="3" value="0" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Отношение Pэ/Pж, о.е.:</strong>
+                        <input type="text" id="single_rerg" name="single_rerg" size="3" value="0" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Коэффициент использования Ки, о.е.:</strong>
+                        <input type="text" id="single_ki" name="single_ki" size="3" value="1" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Потери в экранах трех фаз 3Рэ, кВт:</strong>
+                        <input type="text" id="single_3re" name="single_3re" size="3" value="0" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Стоимость потерь в экранах трех фаз, тыс.руб/год:</strong>
+                        <input type="text" id="single_ce" name="single_ce" size="3" value="0" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Напряжение Uэ в нормальном режиме, В:</strong>
+                        <input type="text" id="single_ue" name="single_ue" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Напряжение Uэ при внешнем трехфазном КЗ, кВ:</strong>
+                        <input type="text" id="single_uk3" name="single_uk3" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Напряжение Uэ при внешнем однофазном КЗ, кВ:</strong>
+                        <input type="text" id="single_uk1" name="single_uk1" size="3" value="--" disabled />
+                    </div>
+
+                    <hr>
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--***********************Двустороннее***********************-->
+            <!--**********************************************************-->
+
+            <div id="div_6">
+                <div>
+                    <h3>ДВУСТОРОННЕЕ ЗАЗЕМЛЕНИЕ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Выбор нормального режима:</strong>
+                        <select id="dbl_norm_reg" name="dbl_norm_reg" class="dbl_norm_reg">
+                            <option value="double_norm_reg_1" selected>режим №1
+                            <option value="double_norm_reg_2">режим №2
+                            <option value="double_norm_reg_3">режим №3
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Ток в жиле Iж, А:</strong>
+                        <input type="text" id="dbl_ig" name="dbl_ig" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Наведенный ток в экране Iэ, А:</strong>
+                        <input type="text" id="dbl_ie" name="dbl_ie" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Отношение Iэ/Iж, о.е.:</strong>
+                        <input type="text" id="dbl_ieig" name="dbl_ieig" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Отношение Pэ/Pж, о.е. :</strong>
+                        <input type="text" id="dbl_rerg" name="dbl_rerg" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Коэффициент использования Ки, о.е.:</strong>
+                        <input type="text" id="dbl_ki" name="dbl_ki" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+
+                    <div class="field">
+                        <strong>Потери в экранах трех фаз 3Pэ, кВт:</strong>
+                        <input type="text" id="dbl_3re" name="dbl_3re" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Стоимость потерь в экранах трех фаз, тыс.руб/год:</strong>
+                        <input type="text" id="dbl_ce" name="dbl_ce" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Потери в жилах трех фаз 3Pж, кВт:</strong>
+                        <input type="text" id="dbl_3rg" name="dbl_3rg" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Стоимость потерь в жилах трех фаз, тыс.руб/год:</strong>
+                        <input type="text" id="dbl_cg" name="dbl_cg" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Суммарные потери в линии, кВт:</strong>
+                        <input type="text" id="dbl_rsum" name="dbl_rsum" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Суммарная стоимость потерь в линии, тыс.руб/год:</strong>
+                        <input type="text" id="dbl_csum" name="dbl_csum" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Напряжение Uэ в нормальном режиме, В:</strong>
+                        <input type="text" id="dbl_ue_norm" name="dbl_ue_norm" size="3" value="0" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Напряжение Uэ при внешнем трехфазном КЗ, кВ:</strong>
+                        <input type="text" id="dbl_ue_3kz" name="dbl_ue_3kz" size="3" value="0" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Напряжение Uэ при внешнем однофазном КЗ, кВ:</strong>
+                        <input type="text" id="dbl_ue_1kz" name="dbl_ue_1kz" size="3" value="0" disabled />
+                    </div>
+                    <hr>
+
+
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--*************************НАСТРОЙКИ************************-->
+            <!--**********************************************************-->
+
+            <div id="div_4">
+                <div>
+                    <h3>НАСТРОЙКИ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+
+                    <div class="field">
+                        <strong>Частота напряжения сети, Гц:</strong>
+                        <input type="text" id="Fg1" name="Fg1" size="2" class="lala" value="50" onblur="if(isNaN(value)) value = '50'"
+                            onchange="handleChange(this, 0.001, 10000);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Фактор нагрузки сети о.е.:</strong>
+                        <input type="text" id="set_kn" name="set_kn" class="lala" size="2" value="1.0" onblur="if(isNaN(value)) value = '1.0'"
+                            onchange="handleChange(this, 0, 1);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Цена потерь мощности в сети, руб за 1 кВт*час:</strong>
+                        <input type="text" id="k_money1" name="k_money1" class="lala" size="2" value="2" onblur="if(isNaN(value)) value = '2'"
+                            onchange="handleChange(this, 0.01, 100);" autocomplete="off"/>
+
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Удельное сопротивление грунта, Ом*м:</strong>
+                        <input type="text" id="ud_grunt1" name="ud_grunt1" class="lala" size="2" value="100" onblur="if(isNaN(value)) value = '100'"
+                            onchange="handleChange(this, 1, 1000);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Глубина заложения коммуникаций, м:</strong>
+                        <input type="text" id="d_glub1" name="d_glub1" class="lala" size="2" value="1" onblur="if(isNaN(value)) value = '1'"
+                            onchange="handleChange(this, 0.001, 100);" autocomplete="off"/>
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Предел коэффициента использования Ки, о.е.:</strong>
+                        <input type="text" id="limit_ki" name="limit_ki" class="lala" size="2" value="0.9" onblur="if(isNaN(value)) value = '0.9'"
+                            onchange="handleChange(this, 0.1, 1);" autocomplete="off"/>
+
+                    </div>
+
+                    <div class="field">
+                        <strong>Предел стоимости потерь в экранах, тыс.руб/год:</strong>
+                        <input type="text" id="limit_money" name="limit_money" class="lala" size="2" value="100" onblur="if(isNaN(value)) value = '100'"
+                            onchange="handleChange(this, 1, 1000);" autocomplete="off"/>
+
+                    </div>
+
+                    <hr>
+                    <div class="field">
+                        <div class="long_text"><strong>Предел Uэ в нормальном режиме работы, В:</strong></div>
+                        <input type="text" id="norm_ue" name="norm_ue" class="lala" size="2" value="100" onblur="if(isNaN(value)) value = '100'"
+                            onchange="handleChange(this, 0.01, 1000);" autocomplete="off"/>
+
+                    </div>
+                    <div class="field">
+                        <div class="long_text"><strong>Предел Uэ при внешнем КЗ, кВ:</strong></div>
+                        <input type="text" id="out_ue" name="out_ue" class="lala" size="2" value="5" onblur="if(isNaN(value)) value = '5'"
+                            onchange="handleChange(this, 0, 100);" autocomplete="off"/>
+
+                    </div>
+                    <hr>
+                    
+                    <div class="field">
+                        <strong>Активное сопротивление Cu при 20 град., мкОм*м: </strong>
+                        <input type="text" id="kab_r_cu" name="kab_r_cu" class="lala" size="2" value="0.0172"
+                            onblur="if(value=='NaN') value = '0.0172'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Активное сопротивление Al при 20 град., мкОм*м: </strong>
+                        <input type="text" id="kab_r_al" name="kab_r_al" class="lala" size="2" value="0.028"
+                            onblur="if(value=='NaN') value = '0.028'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Температурный коэф. сопротивления Cu, о.е.: </strong>
+                        <input type="text" id="kab_kt_cu" name="kab_kt_cu" class="lala" size="2" value="0.0039"
+                            onblur="if(value=='NaN') value = '0.0039'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Температурный коэф. сопротивления Al, о.е.: </strong>
+                        <input type="text" id="kab_kt_al" name="kab_kt_al" class="lala" size="2" value="0.0039"
+                            onblur="if(value=='NaN') value = '0.0039'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <hr>
+
+<!--
+                    <div class="field">
+                        <strong>Удельное активное сопротивление Cu, мкОм*м:</strong>
+                        <input type="text" id="ud_s_m" name="ud_s_m" class="lala" size="2" value="0.02" onblur="if(isNaN(value)) value = '0.02'"
+                            onchange="handleChange(this, 0.0001, 10);" autocomplete="off"/>
+                    </div>
+                    <div class="field">
+                        <strong>Удельное активное сопротивление Al, мкОм*м:</strong>
+                        <input type="text" id="ud_s_al" name="ud_s_al" class="lala" size="2" value="0.032" onblur="if(isNaN(value)) value = '0.032'"
+                            onchange="handleChange(this, 0.0001, 10);" autocomplete="off"/>
+                    </div>-->
+
+                   
+                    <div class="field">
+                        <strong>Расстояние между фазами:</strong>
+                        <select id="rasst" name="rasst" class="rassta">
+                            <!--<option value="space">-->
+                            <option value="axis" selected>между осями
+                            <option value="light">в свету
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="butt"><input type="button" id="m_default" name="m_default" value="Вернуть настройки" /></div>
+                
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--***************************СЕТЬ***************************-->
+            <!--**********************************************************-->
+            <div id="div_1">
+                <div>
+                    <h3>СЕТЬ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+
+                        <div class="field">
+                            <strong>Номинальное напряжение сети Uc, кВ:</strong>
+                            <input type="text" id="Uc" name="Uc" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 1, 750);" autocomplete="off"/>
+                        </div>
+
+                        <div class="field">
+                            <strong>Нейтраль сети: </strong>
+                            <!--method="POST" action=reg.php-->
+                            <select id="neitral" name="neitral" class="neitral">
+                                <!--<option value="space">-->
+                                <option value="ground" selected>заземлена
+                                <option value="izol">изолирована
+                                <option value="reactor">реактор
+                                <option value="resistir">резистор
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Параметры земли определяются: </strong>
+                            <!--method="POST" action=reg.php-->
+                            <select id="param_ground" name="param_ground" class="param_ground">
+                                <!--<option value="space">-->
+                                <option value="ground" selected>грунтом
+                                <option value="izol">коммуникац.
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="field">
+                            <strong>Ток в жиле кабеля в нормальном режиме №1, А:</strong>
+                            <input type="text" id="In1" name="In1" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 5000);" autocomplete="off"/>
+                        </div>
+
+                        <div class="field">
+                            <strong>Ток в жиле кабеля в нормальном режиме №2, А:</strong>
+                            <input type="text" id="In2" name="In2" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 5000);" autocomplete="off"/>
+                        </div>
+
+                        <div class="field">
+                            <strong>Ток в жиле кабеля в нормальном режиме №3, А:</strong>
+                            <input type="text" id="In3" name="In3" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 5000);" autocomplete="off"/>
+                        </div>
+                        <hr>
+                        <div class="field">
+                            <strong>Ток в жиле кабеля при внешнем трехфазном КЗ, кА:</strong>
+                            <input type="text" id="Ik3" name="Ik3" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 100);" autocomplete="off"/>
+                        </div>
+
+                        <div class="field">
+                            <strong>Ток в жиле кабеля при внешнем однофазном КЗ, кА:</strong>
+                            <input type="text" id="Ik1" name="Ik1" class="lala" size="2" value="" onblur="if(value=='NaN') value = ''"
+                                onfocus="if(value=='0') value = ''" onchange="handleChange(this, 0, 100);" autocomplete="off"/>
+                        </div>
+                        <hr>
+                        <div class="butt"><input type="button" id="clear_div3" name="clear_div3" value="Очистить исходные данные" /></div>
+
+                    </div>
+                </div>
+                
+                
+
+            </div>
+            <div id="div_3">
+                <!--**********************************************************-->
+                <!--**************************ТРАССА**************************-->
+                <!--**********************************************************-->
+                <div>
+                    <h3>ТРАССА</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+
+                        <div class="field">
+                            <strong>Число участков кабеля на фазу: </strong>
+                            <input type="text" id="sp_kol_dlin1" name="sp_kol_dlin" class="dinamic_t" size="" value="1"
+                                onchange="handleChange(this, 1, 300);" autocomplete="off"/>
+                        </div>
+
+                        <div class="field">
+                            <strong>Число способов прокладки фаз: </strong>
+                            <select id="sposob_all" name="sposob_all" class="sposob_all1">
+                                <!--<option value="space">-->
+                                <option value="first" selected>1
+                                <option value="second">2
+                                <option value="third">3
+                                <option value="fourth">4
+                            </select>
+                        </div>
+
+                        <div id="content_t" class="maxinf1">
+
+                            <div class="butt2"> </div>
+
+                            <div id="part1" class="spsp1">
+                                <hr>
+                                <div class="field">
+                                    <strong>Cпособ прокладки фаз #1: </strong>
+                                    <select id="sp_keep1" name="sp_keep1" class="sp_keep1">
+                                        <!--<option value="space">-->
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+                                <div class="field">
+
+                                    <strong id="m_phase_1">Расстояние между фазами #1, мм: </strong>
+                                    <input type="text" id="otrezok1" name="otrezok1" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 1, 10000);" value="0" autocomplete="off"/>
+
+                                </div>
+                                <div id="otrez11">
+                                    <div class="spsp1">
+                                        <div class="field">
+                                            <strong>Протяженность на участке №1, м: </strong>
+                                            <input type="text" id="dlinn11" name="dlin11" class="dinamic_t lala" size="5" value = '0'
+                                                onblur="if(isNaN(value)) value = '0'" onchange="handleChange_prev(this, 0, 50000);"  autocomplete="off"/>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div id="part2" class="spsp2">
+                                <hr>
+                                <div class="field">
+                                    <strong>Cпособ прокладки фаз #2: </strong>
+                                    <select id="sp_keep2" name="sp_keep2" class="sp_keep2">
+                                        <!--<option value="space">-->
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+                                <div class="field">
+
+                                    <strong id="m_phase_2">Расстояние между фазами #2, мм: </strong>
+                                    <input type="text" id="otrezok2" name="otrezok2" class="dinamic_t lala" size="5"
+                                        onchange="handleChange(this, 1, 10000);" value="0" autocomplete="off"/>
+
+                                </div>
+                                <div id="otrez21">
+                                    <div class="spsp2">
+                                        <div class="field">
+                                            <strong>Протяженность на участке №1, м: </strong>
+                                            <input type="text" id="dlinn21" name="dlin21" class="dinamic_t lala" size="5" value = '0'
+                                                onblur="if(isNaN(value)) value = '0'" onchange="handleChange(this, 0, 50000);" autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="part3" class="spsp3">
+                                <hr>
+                                <div class="field">
+                                    <strong>Cпособ прокладки фаз #3: </strong>
+                                    <select id="sp_keep3" name="sp_keep3" class="sp_keep3">
+                                        <!--<option value="space">-->
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+                                <div id="otrez31">
+                                    <div class="spsp3">
+                                        <div class="field">
+
+                                            <strong id="m_phase_3">Расстояние между фазами #3, мм: </strong>
+                                            <input type="text" id="otrezok3" name="otrezok3" class="dinamic_t lala" value = '0'
+                                                size="5" onchange="handleChange(this, 1, 10000);" autocomplete="off" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="spsp3">
+                                    <div class="field">
+                                        <strong>Протяженность на участке №1, м: </strong>
+                                        <input type="text" id="dlinn31" name="dlin31" class="dinamic_t lala" size="5" value = '0'
+                                            onblur="if(isNaN(value)) value = '0'" onchange="handleChange(this, 0, 50000);" autocomplete="off" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="part4" class="spsp4">
+                                <hr>
+                                <div class="field">
+                                    <strong>Cпособ прокладки фаз #4: </strong>
+                                    <select id="sp_keep4" name="sp_keep4" class="sp_keep4">
+                                        <!--<option value="space">-->
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+                                <div class="field">
+
+                                    <strong id="m_phase_4">Расстояние между фазами #4, мм: </strong>
+                                    <input type="text" id="otrezok4" name="otrezok4" class="dinamic_t lala" size="5"
+                                        onchange="handleChange(this, 1, 10000);" value="0" autocomplete="off"/>
+
+                                </div>
+                                <div id="otrez41">
+                                    <div class="spsp4">
+
+                                        <div class="field">
+                                            <strong>Протяженность на участке №1, м: </strong>
+                                            <input type="text" id="dlinn41" name="dlin41" class="dinamic_t lala" size="5" value = '0'
+                                                onblur="if(isNaN(value)) value = '0'" onchange="handleChange(this, 0, 50000);"  autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div id="content">
+                        <div class="butt"><input type="button" id="but2" name="send2" value="Расчет эквивалента трассы" /></div>
+
+                        <div class="name_g">
+                            <!--<h3></h3>-->
+                        </div>
+                        <div class="field">
+                            <strong>Общая протяженность линии, м:</strong>
+                            <input type="text" id="L_" name="L_" class="dinamic_t lala" size="5" onchange="handleChange(this, 1, 100000);"
+                                disabled /><br />
+                        </div>
+                        <div class="field">
+                            <strong>Среднее расстояние между осями фаз, мм:</strong>
+                            <input type="text" id="S_" name="S_" class="dinamic_t lala" size="5" onchange="handleChange(this, 1, 100000);"
+                                disabled /><br />
+                        </div>
+                        <div class="field">
+                            <strong>Среднее расстояние в свету между фазами, мм:</strong>
+                            <input type="text" id="dS_" name="dS_" class="dinamic_t lala" size="5" onchange="handleChange(this, 1, 100000);"
+                                disabled /><br />
+                        </div>
+                        <hr>
+                            <div class="butt"><input type="button" id="clear_div2" name="clear_div2" value="Очистить исходные данные" /></div>
+
+                    </div>
+                </div>
+                
+
+            </div>
+            <!--**********************************************************-->
+            <!--***************************КАБЕЛЬ***************************-->
+            <!--**********************************************************-->
+            <div id="div_2">
+                <div>
+                    <h3>КАБЕЛЬ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+
+                        <div class="field">
+                            <strong>Номинальное напряжение кабельной линии, кВ:</strong>
+                            <input type="text" id="Ukab" name="Ukab" class="lala" size="2" onchange="handleChange(this, 1, 750);" autocomplete="off"/>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+
+                <div id="content">
+
+                    <div class="cont1">
+                       
+                        <div class="field">
+                            <strong>Материал жилы: </strong>
+                            <select id="material" name="material">
+                                <option value="cu" selected>Cu
+                                <option value="al">Al
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Сечение жилы Fж, мм2: </strong>
+                            <input type="text" id="sech1" name="sech1" size="2" class="lala" onchange="handleChange(this, 1, 3000);" autocomplete="off"/>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+                        
+                        <div class="field">
+                            <strong>Материал экрана: </strong>
+                            <select id="material1" name="material1">
+                                <option value="cu" selected>Cu
+                                <option value="al">Al
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Сечение экрана Fэ, мм2: </strong>
+                            <!--<label for="sech2">Сечение, мм2:</label> -->
+                            <input type="text" id="sech2" name="sech2" class="lala" size="2" onchange="handleChange(this, 1, 3000);" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="field">
+                    <strong>Коэффициент заполнения жилы, о.е.:</strong>
+                    <input type="text" id="psi1" name="psi1" class="lala" size="2" value="0.9" onblur="if(isNaN(value)) value = '0.9'"
+                        onchange="handleChange(this, 0.01, 1);" autocomplete="off"/>
+                </div>
+
+
+                <div class="field">
+                    <strong>Коэффициент заполнения экрана, о.е.:</strong>
+                    <input type="text" id="psi2" name="psi2" class="lala" size="2" value="0.5" onblur="if(isNaN(value)) value = '0.5'"
+                        onchange="handleChange(this, 0.01, 1);" autocomplete="off"/>
+                </div>
+                <hr>
+                <div class="field">
+                    <strong>Температура жилы в нормальном режиме, град.: </strong>
+                    <input type="text" id="kab_tj_unt_kz" name="kab_tj_unt_kz" class="lala" size="2" value="90"
+                        onblur="if(value=='NaN') value = '90'" onfocus="if(value=='0') value = '0'"
+                        onchange="handleChange(this, 0, 500);" autocomplete="off" />
+                </div>
+                <div class="field">
+                    <strong>Температура экрана в нормальном режиме, град.: </strong>
+                    <input type="text" id="kab_te_unt_kz" name="kab_te_unt_kz" class="lala" size="2" value="80"
+                        onblur="if(value=='NaN') value = '80'" onfocus="if(value=='0') value = '0'"
+                        onchange="handleChange(this, 0, 500);" autocomplete="off" />
+                </div>
+                <hr>
+                <div class="field">
+
+                    <strong>Относит. диэлектр. проницаемость изоляции, о.е.:</strong>
+                    <input type="text" id="d_elec1" name="d_elec1" class="lala" size="2" value="2.5" onblur="if(isNaN(value)) value = '2.5'"
+                        onchange="handleChange(this, 1, 1000);" autocomplete="off"/>
+
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Геометрия кабеля: </strong>
+                        <!--method="POST" action=reg.php-->
+                        <select id="geometry" name="geometry" class="selector">
+                            <!--<option value="space">-->
+                            <option value="math" selected>расчет
+                            <option value="input">ввод
+                        </select>
+                    </div>
+                    <div class="butt"><input type="button" id="but1" name="send" value="Расчет геометрии кабеля" disabled /></div>
+                    <hr>
+                    <div class="name_g">
+
+                    </div>
+                    <div class="field">
+                        <strong>Диаметр по жиле, мм:</strong>
+                        <input type="text" id="d1" name="d1" size="2" class="lala" onchange="handleChange(this, 1, 250);"
+                            disabled /><br />
+                    </div>
+                    <div class="field">
+                        <strong>Диаметр по изоляции, мм:</strong>
+                        <input type="text" id="d2" name="d2" size="2" class="lala" onchange="handleChange(this, 1, 250);"
+                            disabled /><br />
+                    </div>
+                    <div class="field">
+                        <strong>Диаметр по экрану, мм:</strong>
+                        <input type="text" id="d3" name="d3" size="2" class="lala" onchange="handleChange(this, 1, 250);"
+                            disabled /><br />
+                    </div>
+                    <div class="field">
+                        <strong>Диаметр по оболочке, мм:</strong>
+                        <input type="text" id="d4" name="d4" size="2" class="lala" onchange="handleChange(this, 1, 250);"
+                            disabled /><br />
+                    </div>
+                    
+                    <hr>                          
+                </div>
+                
+                <div class="butt"><input type="button" id="clear_div1" name="clear_div1" value="Очистить исходные данные" /></div>
+
+            </div>
+            
+        </form>
+        <div id="div_0">
+
+                <div>
+                        <h3>ПРОГРАММА "ЭКРАН"</h3>
+                    </div>
+                    <hr>
+            <div class="field">
+
+                <strong>Код активации:</strong>
+                <input type="password" id="kod_d" name="kod_d" size="14" value="" 
+                    onblur="if(value=='NaN') value = ''" placeholder="Введите код" autocomplete="on"/>
+                <input type="button" id="ativated" value="Ввести" />
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Получить код активации: </strong>
+                <input type="button" id="kod_take" class="js-show-form" name="kod_take" size="14"  value="Получить" autocomplete="on" />
+                <div class="field__form js-form-container">
+                    <strong>Введите данные:</strong>
+                    <form class="js-form">
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <input id="NAME" name="NAME" placeholder="ФИО" required>
+                        <input id="COMPANY" name="COMPANY" placeholder="Компания" required>
+                        <input id="POSITION" name="POSITION" placeholder="Должность" required>
+                        <input type="tel" id="TEL" name="TEL" placeholder="Телефон" required>
+                        <input type="email" id="EMAIL" name="EMAIL" placeholder="EMail" required>
+                        <input id="OBJNAME" name="OBJNAME" placeholder="Полное наименование объекта">
+                        <input id="OBJADDRESS" name="OBJADDRESS" placeholder="Адрес объекта">
+                        <input id="DATE" name="DATE" placeholder="Предполагаемая дата монтажа">
+                        <button class="js-form-btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Запросить консультацию разработчика: </strong>
+                <input type="button" id="konsul" name="konsul" size="14" onblur="if(value=='NaN') value = ''"
+                value="Запросить" onclick="window.open('http://mvdm.ru/');" autocomplete="on" />
+            </div>
+                <hr>
+
+            <p align="justify">Программа "ЭКРАН" предназначена для
+                помощи в выборе оптимальной схемы
+                заземления экранов кабельных линий
+                номинального напряжения до 500 кВ,
+                выполненных однофазными кабелями.</p>
+                <p align="justify">После задания исходных данных программа
+                    вычисляет наведенные в экранах напряжения
+                    и токи промышленной частоты, а также
+                    вызванные ими потери активной мощности и
+                    их стоимость. Выбор оптимальной схемы
+                    заземления экранов делается пользователем
+                    по результатам сравнения полученных в
+                    расчетах значений с допустимыми.</p>
+               
+            <hr>
+
+           
+            
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/form.js"></script>
+</body>
+
+</html>

@@ -12,8 +12,22 @@
 
     <script type="text/javascript" src="js/script_atme.js"></script>
 
-    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
 
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+        
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur', {action: 'sendmail'}).then(function(token) {
+                //console.log(token);
+                document.getElementById('g-recaptcha-response').value=token;
+            });
+        });
+    </script> -->
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache">
 </head>
@@ -744,8 +758,22 @@
             <hr>
             <div class="field">
                 <strong>Получить код активации: </strong>
-                <input type="button" id="kod_take" name="kod_take" size="14" value="Получить"
-                    onclick="window.open('https://energotek.ru');" autocomplete="on" />
+                <input type="button" id="kod_take" class="js-show-form" name="kod_take" size="14"  value="Получить" autocomplete="on" />
+                <div class="field__form js-form-container">
+                    <strong>Введите данные:</strong>
+                    <form class="js-form">
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <input id="NAME" name="NAME" placeholder="ФИО" required>
+                        <input id="COMPANY" name="COMPANY" placeholder="Компания" required>
+                        <input id="POSITION" name="POSITION" placeholder="Должность" required>
+                        <input type="tel" id="TEL" name="TEL" placeholder="Телефон" required>
+                        <input type="email" id="EMAIL" name="EMAIL" placeholder="EMail" required>
+                        <input id="OBJNAME" name="OBJNAME" placeholder="Полное наименование объекта">
+                        <input id="OBJADDRESS" name="OBJADDRESS" placeholder="Адрес объекта">
+                        <input id="DATE" name="DATE" placeholder="Предполагаемая дата монтажа">
+                        <button class="js-form-btn">Отправить</button>
+                    </form>
+                </div>
             </div>
             <hr>
             <div class="field">
@@ -775,6 +803,7 @@
 
         </div>
     </div>
+    <script type="text/javascript" src="js/form.js"></script>
 </body>
 
 </html>
