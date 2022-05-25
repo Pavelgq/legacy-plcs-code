@@ -51,20 +51,20 @@ form.addEventListener("submit", function (e) {
     first_name: formDataObj.NAME.split(" ")[1] || " ",
     last_name: formDataObj.NAME.split(" ")[0] || " ",
     email: formDataObj.EMAIL,
-    phone_number: formDataObj.TEL,
+    phone_number: formDataObj.TEL.split(" ").join(""),
     office_position: formDataObj.POSITION,
   };
 
   const jsonDataObj = JSON.stringify(renameFormDataObj);
-  console.log(formData, renameFormDataObj, jsonDataObj);
-  postData("https://hidden-inlet-89012.herokuapp.com/api/v1/client/create", {
-    body: jsonDataObj,
-    headers: {
-      "Content-Type": "application/json",
-      token:
-        "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6IlBhdmVsZ3EiLCJwYXNzd29yZCI6IiQyYiQxMCRuT3NLTFY0ZnI2ZG5rc2loNkxqNXouMFVIS2NqVXFSMDduNThwelVzYnBhVHlnT2Z2NFZvMiIsImlhdCI6MTYzOTY4MjQ0NX0.5ROrg92Xg8arQti9UE15IvYr6tuqL-L3A3xpd5wl5HQ",
-    },
-  })
+  postData(
+    "https://hidden-inlet-89012.herokuapp.com/api/v1/client/request/add",
+    {
+      body: jsonDataObj,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then(function () {
       console.log("Пользователь сохранен в базе");
     })
