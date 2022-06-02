@@ -67,6 +67,10 @@ form.addEventListener("submit", function (e) {
   )
     .then(function () {
       console.log("Пользователь сохранен в базе");
+      formFields.forEach(function (input) {
+        input.value = "";
+      });
+      formContainer.classList.remove("open");
     })
     .catch(function (e) {
       console.error("Ошибка", e);
