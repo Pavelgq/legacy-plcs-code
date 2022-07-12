@@ -1,4 +1,6 @@
-﻿var j = 1;
+﻿var url = "https://calcdata.energotek.ru/";
+
+var j = 1;
 var n = 0;
 var n2 = 0;
 var n3 = 0;
@@ -7,6 +9,7 @@ var count = 1;
 var stroy_otr = [];
 var betwen_phase = [];
 var page = 0;
+var kod_status = false;
 $(document).on("ready", loadpage); // Ждём загрузки страницы
 
 $(function () {
@@ -157,6 +160,13 @@ function save() {
   } else {
     saveAs(data2blob(getJson($("form"))), "no_name.txt");
   }
+
+  const data = getJson($("form"));
+
+  let uc = $("#Uc").val();
+  let l = $("#L_").val();
+
+  sendActionData("save", my_file_name, JSON.parse(data), uc, l);
 }
 
 function data2blob(data, isBase64) {
@@ -170,6 +180,10 @@ function data2blob(data, isBase64) {
 }
 
 function loadFile(e) {
+  if (!kod_status) {
+    alert("Сначала необходимо ввести код активации");
+    return;
+  }
   var file = e.target.files[0];
   var reader = new FileReader();
   reader.addEventListener("load", function () {
@@ -182,6 +196,19 @@ function loadFile(e) {
     //};
   });
   reader.readAsText(file, "UTF-8");
+  console.log(file, "filename");
+  const fileName = file.name.split(".");
+
+  let uc = $("#Uc").val();
+  let l = $("#L_").val();
+
+  sendActionData(
+    "load",
+    fileName[0],
+    reader.result || JSON.stringify(getJson($("form"))),
+    uc,
+    l
+  );
 }
 
 var logic1 = false;
@@ -202,6 +229,7 @@ function onblur() {
 }
 
 function loadpage() {
+  checkAccept();
   $("#add").on("click", add);
   $("#save").on("click", save);
 
@@ -301,8 +329,7 @@ function loadpage() {
   $("input[name=send2]").on("click", mathpath_l2);
 
   $("#clear_all").on("click", clearTexts);
-  $(".calc_all").on("click", mathpath);
-  $(".calc_all").on("click", mathpath_l2);
+  $(".calc_all").on("click", calcAll);
 
   $("#m_default").on("click", my_default);
 
@@ -318,7 +345,7 @@ function loadpage() {
     $("#kod_unvis").val($("#kod_d").val());
   });
 
-  $(".calc_all").on("click", decoder);
+  // $(".calc_all").on("click", decoder);
   //$('.before').on("change", change_with_from_before);
   //Нажатие кнопки расчет
   $(".calc_all").on("click", all_math_operation);
@@ -649,6 +676,22 @@ function handle(e) {
   }
 }
 
+function calcAll() {
+  if (!kod_status) {
+    alert("Код доступа не активен");
+    return;
+  }
+  mathpath();
+  mathpath_l2();
+
+  const data = getJson($("form"));
+
+  let uc = $("#Uc").val();
+  let l = $("#L_").val();
+
+  sendActionData("calculation", "No name", JSON.parse(data), uc, l);
+}
+
 function full_cicle_trans_l8() {
   slide_train = document.getElementById("ne_trans").options.selectedIndex;
   var i;
@@ -972,6 +1015,9 @@ function close_pile_list2() {
   }
 }
 function vibor_file() {
+  if (!kod_status) {
+    return;
+  }
   var k = $("#fileToLoad").val().replace("C:\\fakepath\\", "");
   if ($("#fileToLoad").val() == "") {
     alert("Файл не выбран" + k);
@@ -1360,16 +1406,12 @@ function mathpath_l2() {
   }
 }
 function activ_my_prog() {
-  if (!decoder()) {
-    alert("Вы ввели неверный код активации");
-  } else {
-    alert("Код принят");
-  }
+  decoder();
 }
 function all_math_operation() {
   //Считаем все при нажатии главной кнопки расчет
-  if (!decoder()) {
-    alert("Вы ввели неверный код активации");
+  if (!kod_status) {
+    // alert("Вы ввели неверный код активации");
     return 0;
   }
   //**************ДВУСТОРОНЕЕ********************
@@ -2261,54 +2303,6 @@ function sigFigs(n) {
 }
 //Возврат настроек
 function returnDefault() {}
-//Ключик
-
-function decoder() {
-  var my_serial = $("#kod_d").val();
-  var now = new Date();
-  var tYear = now.getFullYear();
-  var tMon = now.getMonth();
-  var tDay = now.getDate();
-  var date = my_serial.substring(0, my_serial.length - 6);
-
-  var id_progr = parseInt(
-    my_serial.substring(my_serial.length - 6, my_serial.length - 3)
-  );
-
-  var id_user = parseInt(my_serial.substring(my_serial.length - 3));
-
-  var yourNumber = parseInt(date, 16);
-  if (yourNumber % 87 == 0) {
-    yourNumber = yourNumber / 87;
-  } else {
-    return false;
-  }
-  var youYear = yourNumber % 10000;
-  var youMon = Math.floor((yourNumber / 10000) % 100);
-  var youDay = Math.floor((yourNumber / 1000000) % 10000);
-
-  if (id_progr == 114) {
-    if (youYear > tYear) {
-      return true;
-    } else if (youYear == tYear) {
-      if (youMon > tMon + 1) {
-        return true;
-      } else if (youMon == tMon + 1) {
-        if (youDay >= tDay) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  } else {
-    return false;
-  }
-}
 
 function my_default() {
   $("#Fg1").val(50);
@@ -2407,3 +2401,156 @@ function new_t_math(material, struct) {
     return kab_r_al * (1 + kab_kt_al * (kab_te_unt_kz - 20));
   }
 }
+
+function oldDecoder() {
+  var my_serial = $("#kod_d").val();
+  var now = new Date();
+  var tYear = now.getFullYear();
+  var tMon = now.getMonth();
+  var tDay = now.getDate();
+  var date = my_serial.substring(0, my_serial.length - 6);
+
+  var id_progr = parseInt(
+    my_serial.substring(my_serial.length - 6, my_serial.length - 3)
+  );
+
+  var id_user = parseInt(my_serial.substring(my_serial.length - 3));
+
+  var yourNumber = parseInt(date, 16);
+  if (yourNumber % 87 == 0) {
+    yourNumber = yourNumber / 87;
+  } else {
+    return false;
+  }
+  var youYear = yourNumber % 10000;
+  var youMon = Math.floor((yourNumber / 10000) % 100);
+  var youDay = Math.floor((yourNumber / 1000000) % 10000);
+
+  if (id_progr == 114) {
+    if (youYear > tYear) {
+      return true;
+    } else if (youYear == tYear) {
+      if (youMon > tMon + 1) {
+        return true;
+      } else if (youMon == tMon + 1) {
+        if (youDay >= tDay) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+function decoder() {
+  if (oldDecoder) {
+    alert("Код принят");
+    kod_status = true;
+    return;
+  }
+  var my_serial = $("#kod_d").val();
+  let fullUrl = url + `api/v1/accept/check/${my_serial}`;
+  let promise = fetch(fullUrl);
+
+  promise
+    .then((res) => {
+      console.log(res.body);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.acceptToken) {
+        localStorage.setItem("accept-token", data.acceptToken);
+        alert("Код принят");
+        kod_status = true;
+        userId = data.id;
+        return;
+      }
+      alert(data.message);
+      kod_status = false;
+      return;
+    })
+    .catch((err) => {
+      alert("Неверный код");
+    });
+}
+function checkAccept() {
+  const fullUrl = url + "api/v1/accept/profile";
+  let acceptToken = localStorage.getItem("accept-token") || "";
+  let promise = fetch(fullUrl, {
+    headers: {
+      "accept-token": acceptToken,
+      "Content-Type": "application/json",
+    },
+  });
+
+  promise
+    .then((res) => {
+      console.log(res.body);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.message) {
+        kod_status = data.accept;
+        return;
+      }
+      kod_status = false;
+      return;
+    });
+}
+
+function sendActionDataF(actionType, projName, data, param1, param2) {
+  let fullUrl = url + `api/v1/action/add`;
+  let acceptToken = localStorage.getItem("accept-token") || "";
+  let object = {
+    project_name: projName,
+    type: actionType,
+    program_type: 2,
+    params: {
+      param1: param1,
+      param2: param2,
+    },
+    data,
+  };
+  console.log(object);
+  let promise = fetch(fullUrl, {
+    method: "POST",
+    body: JSON.stringify(object),
+    headers: {
+      "accept-token": acceptToken,
+      "Content-Type": "application/json",
+    },
+  });
+
+  promise
+    .then((data) => {
+      return data.json();
+    })
+    .then((answ) => {
+      console.log(answ);
+    });
+}
+
+function debounce(f, ms) {
+  let isCooldown = false;
+
+  return function () {
+    if (isCooldown) return;
+
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => (isCooldown = false), ms);
+  };
+}
+
+var sendActionData = debounce(sendActionDataF, 3000);

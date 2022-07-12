@@ -1,0 +1,556 @@
+body {
+    width: 100%;
+    
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font: 14px/21px "Lucida Sanc", "Lucida Grande", "Lucida Sand Unicode", sans-serif;
+    overflow-y:scroll;
+    overflow-x: scroll;
+
+}
+
+/*!!!!!!!!!!!!!!!!!!!*/
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+body {
+    margin: 0;
+}
+
+h2 {
+    font-family: monospace;
+    color: #606060;
+}
+
+h4 {
+    margin: 0;
+    text-align: center;
+}
+
+nav {
+    width: 1000px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+    font-size: 12px;
+    flex-wrap: wrap;
+    align-content: center;
+    padding-left: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+}
+
+.topmenu>li {
+    display: inline-block;
+    margin-right: 0px;
+    position: relative;
+
+    text-align: center;
+    
+}
+
+.topmenu>li:last-child {
+    margin-right: 0;
+    list-style: none;
+    background: rgb(216, 166, 74);
+}
+
+.bld {
+    
+    font-weight:1000;
+    font-style: normal;
+}
+
+.a_base  a {
+    display: block;
+    padding: 10px 10px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+    background: #A0A8E6;
+    border: 1px solid #4895ec;
+}
+.a_other  a{
+    display: block;
+    height: 40.67px;
+    padding: 0px 0px 00px 0px;
+    text-decoration: none;
+    outline: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+    background: #A0A8E6;
+    border: 1px solid #4895ec;
+}
+
+.a_base  .calc_all {
+    list-style: none;
+    background: rgb(216, 166, 74);
+
+
+}
+
+.calc_all:hover {
+    background: rgb(102, 207, 102);
+}
+
+
+a:visited {
+    color: white;
+
+}
+
+a:hover {
+    background: #1C85BB;
+
+}
+
+.fa {
+    font-family: "FontAwesome";
+    color: inherit;
+    /*padding-left: 20px;
+  padding-right: 20px;*/
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: auto;
+
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.2s ease-in-out;
+}
+
+.submenu a {
+    border-top: none;
+}
+
+.four .submenu {
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+}
+
+.four ul li:hover .submenu {
+    -webkit-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+
+}
+
+.four ul a {
+    color: white;
+
+}
+
+/*!!!!!!!!!!!!!!!!!!!!*/
+
+
+
+
+.all_pages {
+    width: 100%;
+    height: 100%;
+    max-width: 490px;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+    top: 0;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contact_form h2 {
+    margin: 0;
+    display: inline;
+}
+
+.field {
+    clear: both;
+    text-align: right;
+    line-height: 25px;
+    
+
+}
+
+.diviator {
+    display: inline-block;
+}
+
+hr {
+    z-index: 0;
+}
+
+strong {
+    float: left;
+    max-width: 450px;
+    text-align: left;
+    padding-right: 3px;
+}
+#fat {
+    border: none;
+     border-top:4px dotted black;
+    
+    
+     height: 1px; 
+ }
+.long_text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    float: left;
+    text-align: left;
+    max-width: 400px;
+    padding-right: 5px;
+}
+
+#div_1,
+#div_2,
+#div_3,
+#div_4,
+#div_5,
+#div_6,
+#div_7,
+#div_8,
+#div_9 {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+#field1 {
+    clear: both;
+    position: absolute;
+    text-align: right;
+    line-height: 25px; /*расстояние между полями*/ 
+    
+
+}
+#but_down {
+    float: left;
+    max-width: 450px;
+    text-align: left;
+    padding-right: 3px;
+    margin-bottom: 0px;
+}
+#but_up{
+    float: right;
+    text-align: right;
+    margin-left: 372px;
+}
+#content,
+#content_t {
+    float: left;
+    width: 100%;
+    max-width: 600px;
+}
+
+hr {
+    margin: 2px 0;
+}
+
+#left,
+#right {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+#pair_b {
+
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+#save, #ativated {
+    width: 100px;
+}
+.dinamic_t,
+.lala {
+    width: 50px;
+    height: 16px;
+}
+
+#geometry {
+    width: 103px;
+    height: 22px;
+}
+
+#material,
+#material1 {
+    width: 54px;
+    height: 22px;
+}
+
+#neitral,
+#param_ground {
+    width: 110px;
+    height: 22px;
+}
+
+
+
+#sposob_all {
+    width: 54px;
+    height: 22px;
+}
+
+/*Стили для меню*/
+.menu {
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    max-width: 700px;
+    width: 100%;
+    font-size: 12px;
+    flex-wrap: wrap;
+    align-content: center;
+    padding-left: 0;
+    margin-top: 20px;
+
+}
+
+/*a {
+
+    text-decoration: none;
+    background: #A0A8E6;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+
+}
+a:visited{
+    color: white;
+}
+
+a:hover {
+    background: #1C85BB;
+}*/
+#clear_all {
+    margin: 5px;
+}
+.pnkt {
+
+    white-space: normal;
+    vertical-align: middle;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 17px;
+}
+
+.butt2 {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.butt1 {
+    white-space: normal;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.file_upload {
+    /*position: relative;
+    overflow: hidden;*/
+    float:left;
+    width:120px;
+    font-size: 1em;
+    /* example */
+    /*height: 1.5em;*/
+    /* example */
+    line-height: 1.5em;
+        /* the same as height */
+    padding-left: 120px;
+    
+}
+#vibor {
+    width: 100px;
+    height: 100%; 
+}
+/*
+.file_upload>button {
+    
+    float: left;
+    width: 100px;
+    height: 100%;
+
+    z-index:10;
+}
+*/
+.file_upload>div {
+    float: left;
+    width:132px;
+    padding-top:2px;
+    /*padding-left: 2em;*/
+    z-index: 4;
+    display: none;
+        /* example */
+}
+
+@media only screen and (max-width:100px) {
+
+    /* example */
+    .file_upload>div {
+        display: none;
+        
+    }
+
+    .file_upload>button {
+        width: 100px
+    }
+}
+#kod_d, #my_file_name,
+.file_upload input[type=text] {
+    position: absolute;
+    width:128px;
+    
+    right: 153px;
+    margin-top:2px;
+    z-index:0;
+}
+.file_upload input[type=file] {
+    position: absolute;
+    
+    width:140px;
+    
+    height: 3%;
+    right: 150px;
+    /*transform: scale(2,2);*/
+    /*letter-spacing: 10em;*/
+    /* IE 9 fix */
+    /*-ms-transform: scale(20);*/
+    /* IE 9 fix */
+    opacity: 0;
+    /*cursor: pointer;*/
+    z-index:10;
+}
+.helper1 {
+   overflow: hidden;
+}
+.helper {
+    max-width: 100%;
+}
+.proverka {
+    /*padding: 5px 34px 5px 34px;*/
+    
+
+    background:#75e875;
+}
+.weidth_select {
+    min-width: 47px;
+}
+#img_key, #img_disk {
+    padding: 0px 0px;
+    height: 40px;
+    width: 40px;
+}
+.a_other {
+    top:16px;
+}
+h3{
+    text-align: center;
+}
+#math11{
+    margin-top: 3px;
+}
+
+#unvis{
+    color:white;
+}
+
+#kod_take, #konsul{
+    width: 100px;
+}
+
+.url_norm{
+    all:initial;
+    color: #1C85BB;
+    cursor: pointer;
+}
+.url_norm:hover{
+    all:initial;
+    cursor: pointer;
+}
+.url_norm:visited{
+    all:initial;
+    color:black;
+    cursor: pointer;
+}
+h3{
+    text-align: center;
+}
+#math11{
+    margin-top: 3px;
+}
+
+#unvis{
+    color:white;
+}
+
+#kod_take, #konsul{
+    width: 100px;
+}
+
+
+.field__form {
+    height: 0;
+    overflow: hidden;
+}
+
+.field__form.open {
+    height: auto;
+}
+
+.field__form form {
+    clear: both;
+}
+
+.field__form input {
+    display: block;
+    width: 300px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+}
+
+.field__form input.error {
+    border: 2px solid transparent;
+    border-style: inset;
+    outline: 1px solid red;
+}
+
+.field__form button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

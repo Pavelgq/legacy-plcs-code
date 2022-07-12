@@ -64,16 +64,16 @@ form.addEventListener("submit", function (e) {
   })
     .then(function () {
       console.log("Пользователь сохранен в базе");
-      formFields.forEach(function (input) {
-        input.value = "";
-      });
-      formContainer.classList.remove("open");
+      // formFields.forEach(function (input) {
+      //   input.value = "";
+      // });
+      // formContainer.classList.remove("open");
     })
     .catch(function (e) {
       console.error("Ошибка", e);
     });
 
-  console.log("success");
+  // console.log("success");
 
   postData("/action.php", { body: formData }).then(function () {
     formFields.forEach(function (input) {

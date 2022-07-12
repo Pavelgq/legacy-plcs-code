@@ -1,12 +1,1622 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE HTML>
+
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Программа "КАБЕЛЬ"</title>
+    <title>Программа "КАБЕЛЬ"</title>
+
+    <LINK rel="stylesheet" href="css/template1.css" type="text/css" />
+    <SCRIPT type="text/javascript" src="js/jquery.min.js"> </SCRIPT>
+
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+
+    <script type="text/javascript" src="js/script_atme.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.7/dist/inputmask.min.js"></script>
+
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lfo1J4aAAAAAC_v7qsQwfyLGxRK7UsHI7WY8kur', {action: 'sendmail'}).then(function(token) {
+                //console.log(token);
+                document.getElementById('g-recaptcha-response').value=token;
+            });
+        });
+    </script>
 </head>
+
 <body>
-  <span>Тут пока ничего нет</span>
+
+    <div class="all_pages">
+        <form id="calc_form" class="calc_form" name="contact_form">
+            <!--<div class="pnkt">
+                <h4>Исходные данные </h4>
+            </div>-->
+
+            <nav class="four">
+                <ul class="topmenu">
+
+                    <li class="a_other"><a href="#" id="open_my_file"><img id="img_key" src="./img/key.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                    </li>
+                    <li class="a_base"><a href="#">ИСХОДНЫЕ ДАННЫЕ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                                <li><a href="#" id="link_1">СЕТЬ</a></li>
+                            <li><a href="#" id="link_2">КАБЕЛЬ</a></li>
+                            <li><a href="#" id="link_3">ТРАССА</a></li>
+                            
+                            <li><a href="#" id="link_4">НАСТРОЙКИ</a></li>
+                        </ul>
+                    </li>
+                    <li class="a_base"><a href="#" id="no_link_1" class="calc_all"  c>РАСЧЕТ</a><i
+                            class="fa fa-angle-down"></i></li>
+                    <li class="a_base"><a href="#">РЕЗУЛЬТАТЫ РАСЧЕТОВ<i class="fa fa-angle-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#" id="link_6">СТОЙКОСТЬ</a></li>
+                            <li><a href="#" id="link_7">ЭКРАН</a></li>
+                            <li><a href="#" id="link_8">ЖИЛА</a></li>
+                            <li><a href="#" id="link_9">ПРОВЕРКА</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="a_other"><a href="#" id="link_10"><img id="img_disk" src="./img/floppy.png"><i
+                                class="fa fa-angle-down"></i></a>
+
+                </ul>
+            </nav>
+            <div id="field1">
+                <div id="but_down">
+                    <input type="button" id="prev" name="prev" value="    <<   ">
+                </div>
+                <div id="but_up">
+                    <input type="button" id="next" name="next" value="   >>    ">
+                </div>
+            </div>
+            <div id="div_12">
+                <input type="text" id="kod_unvis" name="kod_unvis" />
+            </div>
+            <div id="div_11">
+                <!--Для чего-то еще-->
+            </div>
+            <div id="div_5">
+                <div>
+                    <h3 id="unvis">.</h3>
+                </div>
+
+                <p class="a_base"><a href="#"  class="calc_all">РАСЧЕТ</a><i class="fa fa-angle-down"></i>
+                </p>
+            </div>
+
+
+            <!--**********************************************************-->
+            <!--************************---*************************-->
+            <!--**********************************************************-->
+            <div id="div_10">
+
+                <div>
+                    <h3>СОХРАНЕНИЕ И ЗАГРУЗКА</h3>
+                </div>
+                <div class="field">
+                    <hr>
+                    <strong>Сохранить в файл:</strong>
+                    <input type="text" id="my_file_name" name="my_file_name" size="14"
+                        placeholder="Введите имя файла" />
+                    <input type="button" id="save" name="save123" value="Сохранить" />
+                </div>
+
+                <hr>
+                <div class="field">
+                    <div class="helper1">
+                        <div class="helper">
+                            <strong>Загрузить из файла: </strong>
+                            <div class="file_upload">
+                                <div> </div>
+                                <input type="text" id="name_to_file" value="" placeholder="Выберите файл">
+                                <input type="file" id="fileToLoad" accept="text/plain">
+                            </div>
+                            <button type="button" id="vibor">Загрузить</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!--**********************************************************-->
+            <!--********************ПРОВЕРКА*********************-->
+            <!--**********************************************************-->
+            <div id="div_9">
+                <div>
+                    <h3>ПРОВЕРКА ПАДЕНИЯ НАПРЯЖЕНИЯ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Материал экрана: </strong>
+
+                        <select id="div8_material_e" name="div8_material_e" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <strong id='ke_change7'>Сечение каждого экрана Fэ, мм2: </strong>
+
+                        <select id="div8_sech" name="div8_sech" class="neitral weidth_select">
+                            <option value="var1" selected>16
+                            <option value="var2">25
+                            <option value="var3">35
+                            <option value="var4">50
+                            <option value="var5">70
+                            <option value="var6">95
+                            <option value="var7">120
+                            <option value="var8">150
+                            <option value="var9">185
+                            <option value="var10">210
+                            <option value="var11">225
+                            <option value="var12">240
+                            <option value="var13">265
+                            <option value="var14">300
+                            <option value="var15">350
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Потери в экранах Pэ: </strong>
+
+                        <select id="div8_lost" name="div8_lost" class="neitral weidth_select">
+
+                            <option value="yep" selected>есть
+                            <option value="no">нет
+
+                        </select>
+                    </div>
+
+                    <hr>
+                    <div class="field">
+                        <strong>Материал жилы: </strong>
+
+                        <select id="div8_material_g" name="div8_material_g" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Сечение жилы Fж, мм2: </strong>
+
+                        <select id="div8_sech_g" name="div8_sech_g" class="neitral weidth_select">
+                            <option value="var1" selected>35
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Активное сопротивление линии R1, Ом/км:</strong>
+                        <input type="text" id="div8_r1" name="div8_r1" size="3" value="" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Индуктивное сопротивление линии X1, Ом/км:</strong>
+                        <input type="text" id="div8_x1" name="div8_x1" size="3" value="" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Емкостное сопротивление изоляции линии Xc1, МОм/км:</strong>
+                        <input type="text" id="div8_c1" name="div8_c1" size="3" value="" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Общая протяженность линии, км:</strong>
+                        <input type="text" id="div8_distasce" name="div8_distasce" size="3" value="" disabled />
+                    </div>
+                    <hr>
+
+
+                    <div class="field">
+                        <strong>Напряжение сети Uc в начале линии, кВ:</strong>
+                        <input type="text" id="div8_v_start" name="div8_v_start" size="3" value="" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Напряжение нагрузки в конце линии, кВ:</strong>
+                        <input type="text" id="div8_v_end" name="div8_v_end" size="3" value="" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Потери напряжения в линии, % от Uc:</strong>
+                        <input type="text" id="div8_delta" name="div8_delta" size="3" value="" disabled />
+                    </div>
+                    <hr>
+
+                    <div class="field">
+                        <strong>Активная мощность нагрузки Р, МВт</strong>
+                        <input type="text" id="div8_p_activ" name="div8_p_activ" size="3" value="" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Реактивная мощность нагрузки Q, Мвар:</strong>
+                        <input type="text" id="div8_p_reactiv" name="div8_p_reactiv" size="3" value="" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Полная мощность нагрузки, МВА:</strong>
+                        <input type="text" id="div8_p_full" name="div8_p_full" size="3" value="" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Потери активной мощности в линии, % от Р:</strong>
+                        <input type="text" id="div8_p_lost" name="div8_p_lost" size="3" value="" disabled />
+                    </div>
+
+
+                    <hr>
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--**********************ЖИЛЫ*********************-->
+            <!--**********************************************************-->
+            <div id="div_8">
+                <div>
+                    <h3>СЕЧЕНИЕ ЖИЛЫ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Материал экрана: </strong>
+
+                        <select id="div7_material_e" name="div7_material_e" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <strong id='ke_change6'>Сечение каждого экрана Fэ, мм2: </strong>
+
+                        <select id="div7_sech" name="div7_sech" class="neitral weidth_select">
+                            <option value="var1" selected>16
+                            <option value="var2">25
+                            <option value="var3">35
+                            <option value="var4">50
+                            <option value="var5">70
+                            <option value="var6">95
+                            <option value="var7">120
+                            <option value="var8">150
+                            <option value="var9">185
+                            <option value="var10">210
+                            <option value="var11">225
+                            <option value="var12">240
+                            <option value="var13">265
+                            <option value="var14">300
+                            <option value="var15">350
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Потери в экранах Pэ: </strong>
+
+                        <select id="div7_lost" name="div7_lost" class="neitral weidth_select">
+
+                            <option value="yep" selected>есть
+                            <option value="no">нет
+
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="field">
+                        <strong>Материал жилы: </strong>
+
+                        <select id="div7_material_j" name="div7_material_j" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div id="divTable"> </div>
+                        <table class="zgl" id="res_table1" width="490" border="2">
+                            <thead>
+
+                                <tr class="zgl1" align="center">
+                                    <th rowspan="2"><b>Fж, мм2 </b></th>
+                                    <th colspan="4"><b>Длительно допустимый ток для жилы Iдоп, А</b></th>
+
+
+                                </tr>
+                                <tr>
+                                    <th><b>Способ #1</b></th>
+                                    <th><b>Способ #2</b></th>
+                                    <th><b>Способ #3</b></th>
+                                    <th><b>Способ #4</b></th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--***********************ЭКРАНЫ***********************-->
+            <!--**********************************************************-->
+            <div id="div_7">
+                <div>
+                    <h3>СЕЧЕНИЕ ЭКРАНА И СХЕМА ЗАЗЕМЛЕНИЯ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Материал экрана: </strong>
+
+                        <select id="div6_material_e" name="div6_material_e" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <strong id='ke_change5'>Сечение каждого экрана Fэ, мм2: </strong>
+
+                        <select id="div6_sech" name="div6_sech" class="neitral weidth_select">
+                            <option value="var1" selected>16
+                            <option value="var2">25
+                            <option value="var3">35
+                            <option value="var4">50
+                            <option value="var5">70
+                            <option value="var6">95
+                            <option value="var7">120
+                            <option value="var8">150
+                            <option value="var9">185
+                            <option value="var10">210
+                            <option value="var11">225
+                            <option value="var12">240
+                            <option value="var13">265
+                            <option value="var14">300
+                            <option value="var15">350
+                        </select>
+                    </div>
+                    <div class="field">
+                        <strong>Потери в экранах Pэ: </strong>
+
+                        <select id="div6_lost" name="div6_lost" class="neitral weidth_select">
+
+                            <option value="yep" selected>есть
+                            <option value="no">нет
+
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="field">
+                        <strong>Материал жилы: </strong>
+
+                        <select id="div6_material_j" name="div6_material_j" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div id="divTable"> </div>
+                        <table class="zgl" id="res_table" width="490" border="2">
+                            <col class="col1">
+                            <thead>
+
+                                <tr class="zgl1" align="center">
+                                    <th rowspan="2"><b>Fж, мм2 </b></th>
+                                    <th colspan="4"><b>Параметры схемы заземления экранов</b></th>
+
+
+                                </tr>
+                                <tr>
+                                    <th><b>Iэ, А</b></th>
+                                    <th><b>Pэ/Pж, о.е. </b></th>
+                                    <th><b>Ки, о.е. </b></th>
+                                    <th><b>Cэ, т.р./год </b></th>
+                                </tr>
+                            </thead>
+
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--***********************СТОЙКОСТЬ ПРИ КЗ***********************-->
+            <!--**********************************************************-->
+
+            <div id="div_6">
+                <div>
+                    <h3>ТЕРМИЧЕСКАЯ СТОЙКОСТЬ ПРИ КЗ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="field">
+                        <strong>Время Т1 существования первого КЗ, сек:</strong>
+                        <input type="text" id="div5_t1" name="div5_t1" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Поправочный коэффициент Ка1, о.е.:</strong>
+                        <input type="text" id="div5_ka1" name="div5_ka1" size="3" value="--" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Расчетное время Т1*Ка1, сек:</strong>
+                        <input type="text" id="div5_t1ka" name="div5_t1ka" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Время Т2 существования второго КЗ, сек:</strong>
+                        <input type="text" id="div5_t2" name="div5_t2" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Поправочный коэффициент Ка2, о.е.:</strong>
+                        <input type="text" id="div5_ka2" name="div5_ka2" size="3" value="--" disabled />
+                    </div>
+
+                    <div class="field">
+                        <strong>Расчетное время Т2*Ка2, сек:</strong>
+                        <input type="text" id="div5_t2ka" name="div5_t2ka" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+
+                    <div class="field">
+                        <strong>Итоговое расчетное время прохождения тока КЗ, сек:</strong>
+                        <input type="text" id="div5_t_itog" name="div5_t_itog" size="3" value="--" disabled />
+                    </div>
+                    <div class="field">
+                        <strong>Итоговое расчетное значение тока КЗ, кА:</strong>
+                        <input type="text" id="div5_z_itog" name="div5_z_itog" size="3" value="--" disabled />
+                    </div>
+
+
+                    <hr>
+                    <div class="field">
+                        <strong>Материал экрана: </strong>
+
+                        <select id="div5_material_e" name="div8_material_e" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+                    <div class="field" id="div5_ke_cu1">
+                        <strong id="ke_change1">Коэффициент Кэ для каждого экрана, кА/мм2:</strong>
+                        <input type="text" id="div5_ke_cu" name="div5_ke_cu" size="3" value="--" disabled />
+                    </div>
+                    <div class="field" id="div5_ke_al1">
+                        <strong id="ke_change2">Коэффициент Кэ для каждого экрана, кА/мм2:</strong>
+                        <input type="text" id="div5_ke_al" name="div5_ke_al" size="3" value="--" disabled />
+                    </div>
+                    <div class="field" id="div5_fe_cu1">
+                        <strong id="ke_change3">Минимальное сечение каждого экрана Fэ, мм2:</strong>
+                        <input type="text" id="div5_fe_cu" name="div5_fe_cu" size="3" value="--" disabled />
+                    </div>
+                    <div class="field" id="div5_fe_al1">
+                        <strong id="ke_change4">Минимальное сечение каждого экрана Fэ, мм2:</strong>
+                        <input type="text" id="div5_fe_al" name="div5_fe_al" size="3" value="--" disabled />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Материал жилы: </strong>
+
+                        <select id="div5_material_g" name="div5_material_g" class="neitral weidth_select">
+
+                            <option value="Cu" selected>Cu
+                            <option value="Al">Al
+
+                        </select>
+                    </div>
+
+                    <div class="field" id="div5_kj_cu1">
+                        <strong>Коэффициент Кж для жилы, кА/мм2:</strong>
+                        <input type="text" id="div5_kj_cu" name="div5_kj_cu" size="3" value="--" disabled />
+                    </div>
+                    <div class="field" id="div5_kj_al1">
+                        <strong>Коэффициент Кж для жилы, кА/мм2:</strong>
+                        <input type="text" id="div5_kj_al" name="div5_kj_al" size="3" value="--" disabled />
+                    </div>
+
+                    <div class="field" id="div5_fj_cu1">
+                        <strong>Минимальное сечение жилы Fж, мм2:</strong>
+                        <input type="text" id="div5_fj_cu" name="div5_fj_cu" size="3" value="--" disabled />
+                    </div>
+                    <div class="field" id="div5_fj_al1">
+                        <strong>Минимальное сечение жилы Fж, мм2:</strong>
+                        <input type="text" id="div5_fj_al" name="div5_fj_al" size="3" value="--" disabled />
+                    </div>
+
+                    <hr>
+
+
+                </div>
+            </div>
+            <!--**********************************************************-->
+            <!--*************************НАСТРОЙКИ************************-->
+            <!--**********************************************************-->
+
+            <div id="div_4">
+                <div>
+                    <h3>НАСТРОЙКИ</h3>
+                </div>
+                <hr>
+                <div id="content">
+                    <div class="field">
+                        <strong>Частота напряжения сети, Гц:</strong>
+                        <input type="text" id="s1_Hc" name="s1_Hc" class="lala" size="2" value="50"
+                            onblur="if(value=='NaN') value = '50'" onfocus="if(value=='0') value = '50'"
+                            onchange="handleChange(this, 0.1, 1000);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Цена потерь мощности в сети, руб. за 1 кВт*час:</strong>
+                        <input type="text" id="s1_lost" name="s1_lost" class="lala" size="2" value="2"
+                            onblur="if(value=='NaN') value = '2'" onfocus="if(value=='0') value = '2'"
+                            onchange="handleChange(this, 0.1, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Фактор нагрузки, о.е.:</strong>
+                        <input type="text" id="s1_factor" name="s1_factor" class="lala" size="2" value="1.0"
+                            onblur="if(value=='NaN') value = '0.01'" onfocus="if(value=='0') value = '0.01'"
+                            onchange="handleChange(this, 0.01, 1.0);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Коэффициент мощности нагрузки cosF:</strong>
+                        <input type="text" id="s1_cosf" name="s1_cosf" class="lala" size="2" value="0.85"
+                            onblur="if(value=='NaN') value = '0.01'" onfocus="if(value=='0') value = '0.01'"
+                            onchange="handleChange(this, 0.0, 1.0);" autocomplete="off" />
+                    </div>
+
+                    <hr>
+                    <div class="field">
+                        <strong>Тепловое сопротивление изоляции кабеля, м*К/Вт: </strong>
+                        <input type="text" id="div4_ts_izol" name="div4_ts_izol" size="2" class="lala" value="3.5"
+                            onblur="if(isNaN(value)) value = '3.5'" onchange="handleChange(this, 0.01, 1000);"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Тепловое сопротивление оболочки кабеля, м*К/Вт: </strong>
+                        <input type="text" id="div4_ts_ob" name="div4_ts_ob" size="2" class="lala" value="3.5"
+                            onblur="if(isNaN(value)) value = '3.5'" onchange="handleChange(this, 0.01, 1000);"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Тепловое сопротивление полимерной трубы, м*К/Вт: </strong>
+                        <input type="text" id="div4_ts_polgl" name="div4_ts_polgl" size="2" class="lala" value="2"
+                            onblur="if(isNaN(value)) value = '2'" onchange="handleChange(this, 0.01, 1000);"
+                            autocomplete="off" />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Температура воздуха над землей (град.):</strong>
+                        <input type="text" id="div4_temp_air" name="div4_temp_air" class="lala" size="2" value="35"
+                            onblur="if(isNaN(value)) value = '35'" onchange="handleChange(this, -100, 100);"
+                            autocomplete="off" />
+
+                    </div>
+
+                    <div class="field">
+                        <strong>Температура грунта (град.) на глубине H &#60;0.99м:
+                        </strong> <input type="text" id="div4_temp_min" name="div4_temp_min" class="lala" size="2"
+                            value="20" onblur="if(isNaN(value)) value = '20'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+
+                    </div>
+                    <div class="field">
+                        <strong>Температура грунта (град.) на глубине 1м&#60;H&#60;2.99м: </strong>
+                        <input type="text" id="div4_temp_mid" name="div4_temp_mid" class="lala" size="2" value="15"
+                            onblur="if(isNaN(value)) value = '15'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+
+                    </div>
+                    <div class="field">
+                        <strong>Температура грунта (град.) на глубине 3м&#60;H&#60;4.99м: </strong>
+                        <input type="text" id="div4_temp_high_mid" name="div4_temp_high_mid" class="lala" size="2"
+                            value="10" onblur="if(isNaN(value)) value = '10'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+
+                    </div>
+                    <div class="field">
+                        <strong>Температура грунта (град.) на глубине H&#62;5м: </strong>
+                        <input type="text" id="div4_temp_high" name="div4_temp_high" class="lala" size="2" value="5"
+                            onblur="if(isNaN(value)) value = '5'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+                    </div>
+
+
+                    <hr>
+                    <div class="field">
+                        <strong>Теплопроводность воздуха в трубе, Вт/(м*К): </strong>
+                        <input type="text" id="div4_tp_air1" name="div4_tp_air1" class="lala" size="2" value="0.03"
+                            onblur="if(isNaN(value)) value = '0.03'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Теплопередача конвекцией воздуха в трубе, Вт/(м2*К):</strong>
+                        <input type="text" id="div4_tp_air2" name="div4_tp_air2" class="lala" size="2" value="5"
+                            onblur="if(isNaN(value)) value = '5'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Теплопередача конвекцией открытого воздуха, Вт/(м2*К):</strong>
+                        <input type="text" id="div4_tp_air3" name="div4_tp_air3" class="lala" size="2" value="10"
+                            onblur="if(isNaN(value)) value = '10'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Коэффициент формы потока открытого воздуха, о.е.:</strong>
+                        <input type="text" id="div4_k_potok" name="div4_k_potok" class="lala" size="2" value="2"
+                            onblur="if(isNaN(value)) value = '2'" onchange="handleChange(this, 0, 100);"
+                            autocomplete="off" />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Модуль упругости E трубы при сжатии, МПА:</strong>
+                        <input type="text" id="div4_mod_upr" name="div4_mod_upr" class="lala" size="2" value="950"
+                            onblur="if(isNaN(value)) value = '950'" onchange="handleChange(this, 0, 10000);"
+                            autocomplete="off" />
+
+                    </div>
+                    <div class="field">
+
+                        <strong>Минимальное отношение Dв/dэкв для трубы, о.е.:</strong>
+                        <input type="text" id="div3_dv_dekv1" name="div3_dv_dekv1" class=" lala" size="2"
+                            onchange="handleChange(this, 1, 100);" value="1.5" autocomplete="off" />
+
+                    </div>
+                    <hr>
+
+
+
+                    <div class="field">
+                        <strong>Активное сопротивление Cu при 20 град., мкОм*м: </strong>
+                        <input type="text" id="kab_r_cu" name="kab_r_cu" class="lala" size="2" value="0.0172"
+                            onblur="if(value=='NaN') value = '0.0172'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Активное сопротивление Al при 20 град., мкОм*м: </strong>
+                        <input type="text" id="kab_r_al" name="kab_r_al" class="lala" size="2" value="0.028"
+                            onblur="if(value=='NaN') value = '0.028'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Температурный коэф. сопротивления Cu, о.е.: </strong>
+                        <input type="text" id="kab_kt_cu" name="kab_kt_cu" class="lala" size="2" value="0.0039"
+                            onblur="if(value=='NaN') value = '0.0039'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Температурный коэф. сопротивления Al, о.е.: </strong>
+                        <input type="text" id="kab_kt_al" name="kab_kt_al" class="lala" size="2" value="0.0039"
+                            onblur="if(value=='NaN') value = '0.0039'" onfocus="if(value=='0') value = '0.000001'"
+                            onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <strong>Удельная теплоемкость Cu, Дж/(кг*К): </strong>
+                        <input type="text" id="kab_Ct_cu" name="kab_Ct_cu" class="lala" size="2" value="380"
+                            onblur="if(value=='NaN') value = '380'" onfocus="if(value=='0') value = '0.001'"
+                            onchange="handleChange(this, 0.001, 10000);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Удельная теплоемкость Al, Дж/(кг*К): </strong>
+                        <input type="text" id="kab_Ct_al" name="kab_Ct_al" class="lala" size="2" value="880"
+                            onblur="if(value=='NaN') value = '880'" onfocus="if(value=='0') value = '0.001'"
+                            onchange="handleChange(this, 0.001, 10000);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Удельный вес (плотность) Cu, кг/м3: </strong>
+                        <input type="text" id="kab_p_cu" name="kab_p_cu" class="lala" size="2" value="8890"
+                            onblur="if(value=='NaN') value = '8890'" onfocus="if(value=='0') value = '0.001'"
+                            onchange="handleChange(this, 0.001, 10000);" autocomplete="off" />
+                    </div>
+                    <div class="field">
+                        <strong>Удельный вес (плотность) Al, кг/м3: </strong>
+                        <input type="text" id="kab_p_al" name="kab_p_al" class="lala" size="2" value="2700"
+                            onblur="if(value=='NaN') value = '2700'" onfocus="if(value=='0') value = '0.001'"
+                            onchange="handleChange(this, 0.001, 10000);" autocomplete="off" />
+                    </div>
+
+
+
+
+
+
+                    <hr>
+
+
+                    <input type="button" id="clear_setting" name="clear_setting" value="Вернуть настройки"
+                        onclick="clear_div4()">
+
+                </div>
+
+            </div>
+            <!--**********************************************************-->
+            <!--***************************СЕТЬ***************************-->
+            <!--**********************************************************-->
+            <div id="div_1">
+                <div>
+                    <h3>СЕТЬ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+
+                        <div class="field">
+                            <strong>Номинальное напряжение сети Uc, кВ:</strong>
+                            <input type="text" id="s1_Uc" name="s1_Uc" class="lala" size="2" value=""
+                                onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''"
+                                onchange="handleChange(this, 1, 750);" autocomplete="off" />
+                        </div>
+
+
+
+                        <div class="field">
+                            <strong>Нейтраль сети: </strong>
+
+                            <select id="s1_neitral" name="neitral" class="neitral weidth_select">
+
+                                <option value="ground" selected>заземлена
+                                <option value="izol">изолирована
+                                <option value="reactor">реактор
+                                <option value="resistir">резистор
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <strong>Ток нагрузки в нормальном режиме, А:</strong>
+                            <input type="text" id="s1_i_norm" name="s1_i_norm" class="lala" size="2" value=""
+                                onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''"
+                                onchange="handleChange(this, 0, 5000);" autocomplete="off" />
+                        </div>
+                        <hr>
+
+                        <div class="field">
+                            <strong>Ток трехфазного короткого замыкания сети, кА:</strong>
+                            <input type="text" id="s1_3kz" name="s1_3kz" class="lala" size="2" value=""
+                                onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''"
+                                onchange="handleChange(this, 0, 500);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Ток однофазного короткого замыкания сети, кА:</strong>
+                            <input type="text" id="s1_1kz" name="s1_1kz" class="lala" size="2" value=""
+                                onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''"
+                                onchange="handleChange(this, 0, 500);" autocomplete="off" />
+                        </div>
+                        <hr>
+                        <div class="field">
+                            <strong>Апериодическая составляющая в токе КЗ: </strong>
+
+                            <select id="s1_upper" name="s1_upper" class="neitral weidth_select">
+                                <option value="not" selected>нет
+                                <option value="yep">есть
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Примыкание КЛ к шинам станции: </strong>
+
+                            <select id="s1_prim_kl" name="s1_prim_kl" class="neitral weidth_select" disabled>
+
+                                <option value="not" selected>нет
+                                <option value="yep">есть
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Постоянная времени затухания Tа, сек:</strong>
+                            <input type="text" id="s1_ta" name="s1_ta" class="lala" size="2" value="0.075"
+                                onblur="if(value=='NaN') value = '0.075'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0, 5000);" autocomplete="off" disabled />
+                        </div>
+                        <hr>
+                        <div class="field">
+                            <strong>По какой защите следует провести расчет: </strong>
+
+                            <select id="s1_def_var" name="s1_def_var" class="neitral weidth_select">
+
+                                <option value="base" selected>основная
+                                <option value="reserv">резервная
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Учет отказа выключателя (УРОВ):</strong>
+
+                            <select id="s1_brake_urov" name="s1_brake_urov" class="neitral weidth_select">
+
+                                <option value="not" selected>нет
+                                <option value="yep">есть
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <strong>Учет повторного включения (АПВ): </strong>
+
+                            <select id="s1_rep_apv" name="s1_rep_apv" class="neitral weidth_select">
+
+                                <option value="not" selected>нет
+                                <option value="yep">есть
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="field">
+                            <strong>Время срабатывания основной защиты, сек:</strong>
+                            <input type="text" id="s1_base_def" name="s1_base_def" class="lala" size="2" value="0.1"
+                                onblur="if(value=='NaN') value = ''" onfocus="if(value=='0') value = ''"
+                                onchange="handleChange(this, 0, 10);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Время срабатывания резервной защиты, сек:</strong>
+                            <input type="text" id="s1_res_def" name="s1_res_def" class="lala" size="2" value="0.6"
+                                onblur="if(value=='NaN') value = '0.6'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0, 10);" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <strong>Время срабатывания УРОВ, сек:</strong>
+                            <input type="text" id="s1_t_urov" name="s1_t_urov" class="lala" size="2" value="0.3"
+                                onblur="if(value=='NaN') value = '0.3'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0, 10);" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <strong>Собственное время отключ. выключателя, сек:</strong>
+                            <input type="text" id="s1_t_Auto_off" name="s1_t_Auto_off" class="lala" size="2"
+                                value="0.05" onblur="if(value=='NaN') value = '0.05'"
+                                onfocus="if(value=='0') value = '0'" onchange="handleChange(this, 0, 10);"
+                                autocomplete="off" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <hr>
+
+                <input type="button" id="clear_s1" name="clear_s1" value="Очистить исходные данные">
+
+
+            </div>
+            <div id="div_3">
+                <!--**********************************************************-->
+                <!--**************************ТРАССА**************************-->
+                <!--**********************************************************-->
+                <div>
+                    <h3>ТРАССА</h3>
+                </div>
+                <hr>
+
+
+
+                <div id="content">
+
+                    <div class="cont1">
+
+
+                        <div class="field">
+                            <strong id="div3_change_name">Число способов прокладки однофазных кабелей: </strong>
+                            <select id="div3_sposob_all" name="div3_sposob_all"
+                                class="sposob_all1 neitral weidth_select">
+                                <option value="first" selected>1
+                                <option value="second">2
+                                <option value="third">3
+                                <option value="four">4
+
+                            </select>
+                        </div>
+                        <div class="field">
+                            <strong>Выбор способа:</strong>
+                            <!--<select id="div3_select_sposob" name="div3_select_sposob"
+                                class="sposob_all1 neitral weidth_select">
+                                <option value="first" selected>способ #1
+                                <option value="second">способ #2
+                                <option value="third">способ #3
+                                <option value="four">способ #4
+
+                            </select>-->
+                            <input type="button" id="sposob_s1" name="sposob_s1" value="Cпособ #1"
+                                onclick="sposob_trassa1()">
+                            <input type="button" id="sposob_s2" name="sposob_s2" value="Cпособ #2"
+                                onclick="sposob_trassa2()">
+                            <input type="button" id="sposob_s3" name="sposob_s3" value="Cпособ #3"
+                                onclick="sposob_trassa3()">
+                            <input type="button" id="sposob_s4" name="sposob_s4" value="Cпособ #4"
+                                onclick="sposob_trassa4()">
+                        </div>
+
+                        <div id="content_t" class="maxinf1">
+
+                            <div class="butt2"> </div>
+
+                            <div id="part1" class="spsp1">
+                                <hr>
+                                <div class="field">
+                                    <strong>#1 Условия прокладки: </strong>
+                                    <select id="div3_usl1" name="div3_usl1" class="neitral weidth_select">
+                                        <option value="grunt" selected>трубы в грунте
+                                        <option value="gr_in_pipe">в грунте
+                                        <option value="air">на воздухе
+                                    </select>
+                                </div>
+                                <div class="field" id="div3_skeep1">
+                                    <strong>#1 Cпособ прокладки фаз: </strong>
+                                    <select id="div3_keep1" name="div3_keep1" class="sp_keep1 neitral weidth_select">
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+                                <hr>
+
+                                <div class="field">
+
+                                    <strong>#1 Протяженность способа вдоль трассы КЛ, м: </strong>
+                                    <input type="text" id="div3_otrezok1" name="div3_otrezok1" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 10, 100000);" value=""
+                                        autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+                                    <strong>#1 Тепловое сопротивление грунта, м*К/Вт:</strong>
+                                    <input type="text" id="div3_grunt1" name="div3_grunt1" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 0.1, 10);" value="" autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#1 Расстояние от кабеля до поверхности земли H, мм:</strong>
+                                    <input type="text" id="div3_H1" name="div3_H1" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 100000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <div class="field" id="div3_skeep1ab">
+
+
+
+                                    <strong>#1 Расстояние между осями фаз Sab, мм:</strong>
+                                    <input type="text" id="div3_Sab1" name="div3_Sab1" class="dinamic_t lala" size="3"
+                                        onchange="handleChange_Sab1(this, 1, 10000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <hr>
+                                <div class="field">
+                                    <strong>#1 Число параллельных цепей КЛ: </strong>
+                                    <select id="div3_paral_kl1" name="div3_paral_kl1"
+                                        class="sposob_all1 neitral weidth_select">
+                                        <option value="one" selected>1
+                                        <option value="two">2
+                                    </select>
+                                </div>
+                                <div class="field">
+
+                                    <strong>#1 Расстояние между центрами цепей S12, мм:</strong>
+                                    <input type="text" id="div3_S12_1" name="div3_S12_1" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 10000);" value="--" autocomplete="off"
+                                        disabled />
+
+                                </div>
+                                <hr>
+                                <div class="field">
+                                    <strong>#1 Число кабелей в одной полимерной трубе: </strong>
+                                    <input type="text" id="div3_cable_in_pipe1" name="div3_cable_in_pipe1"
+                                        class="dinamic_t lala" size="3" onchange="handleChange(this, 1, 10000);"
+                                        value="" autocomplete="off" disabled />
+                                </div>
+                                <div class="field">
+
+                                    <strong>#1 Внешний диаметр трубы D, мм:</strong>
+                                    <select id="div3_D1" name="div3_D1" class="neitral weidth_select">
+                                        <option value="var_d_1" selected>63
+                                    </select>
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#1 Кольцевая жесткость трубы SN, кН/мм2:</strong>
+                                    <select id="div3_SN1" name="div3_SN1" class="neitral weidth_select">
+                                        <option value="var_SN_1" selected>12
+                                    </select>
+
+                                </div>
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#1 Максимальное сечение жилы Fж, мм2:</strong>
+                                    <input type="text" id="div3_max_fg1" name="div3_max_fg1" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 1, 10000);" value="" autocomplete="off"
+                                        disabled />
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+                            <div id="part2" class="spsp1">
+                                <hr>
+                                <div class="field">
+                                    <strong>#2 Условия прокладки: </strong>
+                                    <select id="div3_usl2" name="div3_usl2" class="neitral weidth_select">
+                                        <option value="grunt" selected>трубы в грунте
+                                        <option value="gr_in_pipe">в грунте
+                                        <option value="air">на воздухе
+                                    </select>
+                                </div>
+                                <div class="field" id="div3_skeep2">
+                                    <strong>#2 Cпособ прокладки фаз: </strong>
+                                    <select id="div3_keep2" name="div3_keep2" class="sp_keep1 neitral weidth_select">
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#2 Протяженность способа вдоль трассы КЛ, м: </strong>
+                                    <input type="text" id="div3_otrezok2" name="div3_otrezok2" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 10, 100000);" value=""
+                                        autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+                                    <strong>#2 Тепловое сопротивление грунта, м*К/Вт:</strong>
+                                    <input type="text" id="div3_grunt2" name="div3_grunt2" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 0.1, 10);" value="" autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#2 Расстояние от кабеля до поверхности земли H, мм:</strong>
+                                    <input type="text" id="div3_H2" name="div3_H2" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 100000);" value="" autocomplete="off" />
+
+                                </div>
+
+
+                                <div class="field" id="div3_skeep2ab">
+
+
+
+                                    <strong>#2 Расстояние между осями фаз Sab, мм:</strong>
+                                    <input type="text" id="div3_Sab2" name="div3_Sab2" class="dinamic_t lala" size="3"
+                                        onchange="handleChange_Sab2(this, 1, 10000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <hr>
+                                <div class="field">
+                                    <strong>#2 Число параллельных цепей КЛ: </strong>
+                                    <select id="div3_paral_kl2" name="div3_paral_kl2"
+                                        class="sposob_all1 neitral weidth_select">
+                                        <option value="one" selected>1
+                                        <option value="two">2
+                                    </select>
+                                </div>
+                                <div class="field">
+
+                                    <strong>#2 Расстояние между центрами цепей S12, мм:</strong>
+                                    <input type="text" id="div3_S12_2" name="div3_S12_2" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 10000);" value="--" autocomplete="off"
+                                        disabled />
+
+                                </div>
+                                <hr>
+                                <div class="field">
+                                    <strong>#2 Число кабелей в одной полимерной трубе: </strong>
+                                    <input type="text" id="div3_cable_in_pipe2" name="div3_cable_in_pipe2"
+                                        class="dinamic_t lala" size="3" onchange="handleChange(this, 1, 10000);"
+                                        value="" autocomplete="off" disabled />
+                                </div>
+                                <div class="field">
+
+                                    <strong>#2 Внешний диаметр трубы D, мм:</strong>
+                                    <select id="div3_D2" name="div3_D2" class="neitral weidth_select">
+                                        <option value="var_d_1" selected>63
+                                    </select>
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#2 Кольцевая жесткость трубы SN, кН/мм2:</strong>
+                                    <select id="div3_SN2" name="div3_SN2" class="neitral weidth_select">
+                                        <option value="var_SN_1" selected>12
+                                    </select>
+
+                                </div>
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#2 Максимальное сечение жилы Fж, мм2:</strong>
+                                    <input type="text" id="div3_max_fg2" name="div3_max_fg2" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 1, 10000);" value="" autocomplete="off"
+                                        disabled />
+
+                                </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div id="part3" class="spsp1">
+                                <hr>
+                                <div class="field">
+                                    <strong>#3 Условия прокладки: </strong>
+                                    <select id="div3_usl3" name="div3_usl3" class="neitral weidth_select">
+                                        <option value="grunt" selected>трубы в грунте
+                                        <option value="gr_in_pipe">в грунте
+                                        <option value="air">на воздухе
+                                    </select>
+                                </div>
+                                <div class="field" id="div3_skeep3">
+                                    <strong>#3 Cпособ прокладки фаз: </strong>
+                                    <select id="div3_keep3" name="div3_keep3" class="sp_keep1 neitral weidth_select">
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#3 Протяженность способа вдоль трассы КЛ, м: </strong>
+                                    <input type="text" id="div3_otrezok3" name="div3_otrezok3" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 10, 100000);" value=""
+                                        autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+                                    <strong>#3 Тепловое сопротивление грунта, м*К/Вт:</strong>
+                                    <input type="text" id="div3_grunt3" name="div3_grunt3" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 0.1, 10);" value="" autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#3 Расстояние от кабеля до поверхности земли H, мм:</strong>
+                                    <input type="text" id="div3_H3" name="div3_H3" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 100000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <div class="field" id="div3_skeep3ab">
+
+
+
+                                    <strong>#3 Расстояние между осями фаз Sab, мм:</strong>
+                                    <input type="text" id="div3_Sab3" name="div3_Sab3" class="dinamic_t lala" size="3"
+                                        onchange="handleChange_Sab3(this, 1, 10000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <hr>
+                                <div class="field">
+                                    <strong>#3 Число параллельных цепей КЛ: </strong>
+                                    <select id="div3_paral_kl3" name="div3_paral_kl3"
+                                        class="sposob_all1 neitral weidth_select">
+                                        <option value="one" selected>1
+                                        <option value="two">2
+                                    </select>
+                                </div>
+                                <div class="field">
+
+                                    <strong>#3 Расстояние между центрами цепей S12, мм:</strong>
+                                    <input type="text" id="div3_S12_3" name="div3_S12_3" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 10000);" value="--" autocomplete="off"
+                                        disabled />
+                                </div>
+
+                                <hr>
+                                <div class="field">
+                                    <strong>#3 Число кабелей в одной полимерной трубе: </strong>
+                                    <input type="text" id="div3_cable_in_pipe3" name="div3_cable_in_pipe3"
+                                        class="dinamic_t lala" size="3" onchange="handleChange(this, 1, 10000);"
+                                        value="" autocomplete="off" disabled />
+                                </div>
+                                <div class="field">
+
+                                    <strong>#3 Внешний диаметр трубы D, мм:</strong>
+                                    <select id="div3_D3" name="div3_D3" class="neitral weidth_select">
+                                        <option value="var_d_1" selected>63
+                                    </select>
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#3 Кольцевая жесткость трубы SN, кН/мм2:</strong>
+                                    <select id="div3_SN3" name="div3_SN3" class="neitral weidth_select">
+                                        <option value="var_SN_1" selected>12
+                                    </select>
+
+                                </div>
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#3 Максимальное сечение жилы Fж, мм2:</strong>
+                                    <input type="text" id="div3_max_fg3" name="div3_max_fg3" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 1, 10000);" value="" autocomplete="off"
+                                        disabled />
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div id="part4" class="spsp1">
+                                <hr>
+                                <div class="field">
+                                    <strong>#4 Условия прокладки: </strong>
+                                    <select id="div3_usl4" name="div3_usl4" class="neitral weidth_select">
+                                        <option value="grunt" selected>трубы в грунте
+                                        <option value="gr_in_pipe">в грунте
+                                        <option value="air">на воздухе
+                                    </select>
+                                </div>
+                                <div class="field" id="div3_skeep4">
+                                    <strong>#4 Cпособ прокладки фаз: </strong>
+                                    <select id="div3_keep4" name="div3_keep4" class="sp_keep1 neitral weidth_select">
+                                        <option value="teck_in" selected>сомкнутый треугольник
+                                        <option value="teck_out">разомкнутый треугольник
+                                        <option value="line">ряд
+                                    </select>
+                                </div>
+
+
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#4 Протяженность способа вдоль трассы КЛ, м: </strong>
+                                    <input type="text" id="div3_otrezok4" name="div3_otrezok4" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 10, 100000);" value=""
+                                        autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+                                    <strong>#4 Тепловое сопротивление грунта, м*К/Вт:</strong>
+                                    <input type="text" id="div3_grunt4" name="div3_grunt4" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 0.1, 10);" value="" autocomplete="off" />
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#4 Расстояние от кабеля до поверхности земли H, мм:</strong>
+                                    <input type="text" id="div3_H4" name="div3_H4" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 100000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <div class="field" id="div3_skeep4ab">
+
+
+
+                                    <strong>#4 Расстояние между осями фаз Sab, мм:</strong>
+                                    <input type="text" id="div3_Sab4" name="div3_Sab4" class="dinamic_t lala" size="3"
+                                        onchange="handleChange_Sab4(this, 1, 10000);" value="" autocomplete="off" />
+
+                                </div>
+
+                                <hr>
+                                <div class="field">
+                                    <strong>#4 Число параллельных цепей КЛ: </strong>
+                                    <select id="div3_paral_kl4" name="div3_paral_kl4"
+                                        class="sposob_all1 neitral weidth_select">
+                                        <option value="one" selected>1
+                                        <option value="two">2
+                                    </select>
+                                </div>
+                                <div class="field">
+
+                                    <strong>#4 Расстояние между центрами цепей S12, мм:</strong>
+                                    <input type="text" id="div3_S12_4" name="div3_S12_4" class="dinamic_t lala" size="3"
+                                        onchange="handleChange(this, 500, 10000);" value="--" autocomplete="off"
+                                        disabled />
+                                </div>
+                                <hr>
+                                <div class="field">
+                                    <strong>#4 Число кабелей в одной полимерной трубе: </strong>
+                                    <input type="text" id="div3_cable_in_pipe4" name="div3_cable_in_pipe4"
+                                        class="dinamic_t lala" size="3" onchange="handleChange(this, 1, 10000);"
+                                        value="" autocomplete="off" disabled />
+                                </div>
+                                <div class="field">
+
+                                    <strong>#4 Внешний диаметр трубы D, мм:</strong>
+                                    <select id="div3_D4" name="div3_D4" class="neitral weidth_select">
+                                        <option value="var_d_1" selected>63
+                                    </select>
+
+                                </div>
+                                <div class="field">
+
+                                    <strong>#4 Кольцевая жесткость трубы SN, кН/мм2:</strong>
+                                    <select id="div3_SN4" name="div3_SN4" class="neitral weidth_select">
+                                        <option value="var_SN_1" selected>12
+                                    </select>
+
+                                </div>
+                                <hr>
+                                <div class="field">
+
+                                    <strong>#4 Максимальное сечение жилы Fж, мм2:</strong>
+                                    <input type="text" id="div3_max_fg4" name="div3_max_fg4" class="dinamic_t lala"
+                                        size="3" onchange="handleChange(this, 1, 10000);" value="" autocomplete="off"
+                                        disabled />
+
+                                </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <hr>
+                <div id="content">
+
+
+
+                    <div class="butt"><input type="button" id="but2" name="send2" value="Расчет эквивалента трассы" />
+                    </div>
+
+                    <div class="name_g">
+                    </div>
+
+
+                    <div class="field">
+                        <strong>Общая протяженность линии, м:</strong>
+                        <input type="text" id="div3_Lall" name="div3_Lall" class="dinamic_t lala" size="5"
+                            onchange="handleChange(this, 1, 100000);" disabled /><br />
+                    </div>
+
+                </div>
+                <div class="field">
+
+                    <strong>Максимальное сечение жилы Fж, мм2:</strong>
+                    <input type="text" id="div3_max_fg_2" name="div3_max_fg_2" class="dinamic_t lala" size="3"
+                        onchange="handleChange(this, 1, 10000);" value="" autocomplete="off" disabled />
+
+                </div>
+
+
+                <hr>
+                <input type="button" id="clear_tr" name="clear_tr" value="Очистить исходные данные">
+
+            </div>
+            <!--**********************************************************-->
+            <!--***************************КАБЕЛЬ***************************-->
+            <!--**********************************************************-->
+            <div id="div_2">
+                <div>
+                    <h3>КАБЕЛЬ</h3>
+                </div>
+                <hr>
+                <div id="content">
+
+                    <div class="cont1">
+
+                        <div class="field">
+                            <strong>Номинальное напряжение кабельной линии, кВ:</strong>
+                            <input type="text" id="kab_Ukab" name="kab_Ukab" class="lala" size="2"
+                                onchange="handleChange(this, 1, 750);" autocomplete="off" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="field">
+                    <strong>Конструкция кабеля: </strong>
+                    <select id="kab_konstr" name="kab_konstr">
+                        <option value="one" selected>однофазная
+                        <option value="three">трехфазная
+                    </select>
+                </div>
+                <div class="field">
+                    <strong>Касание экранов трех фаз друг друга: </strong>
+                    <select id="kab_touch" name="kab_touch" disabled>
+                        <option value="nono" selected>нет
+                        <option value="yeap">есть
+                    </select>
+                </div>
+
+                <hr>
+
+                <div id="content">
+
+                    <div class="cont1">
+                        <div class="field">
+                            <strong>Коэффициент заполнения жилы, о.е.: </strong>
+                            <input type="text" id="kab_kj" name="kab_kj" class="lala" size="2" value="0.9"
+                                onblur="if(value=='NaN') value = '0.9'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0.01, 1);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Коэффициент заполнения экрана о.е.: </strong>
+                            <input type="text" id="kab_ke" name="kab_ke" class="lala" size="2" value="0.5"
+                                onblur="if(value=='NaN') value = '0.5'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0.01, 1);" autocomplete="off" />
+                        </div>
+                        <hr>
+
+
+                        <div class="field">
+                            <strong>Температура жилы в нормальном режиме (до КЗ), град.: </strong>
+                            <input type="text" id="kab_tj_unt_kz" name="kab_tj_unt_kz" class="lala" size="2" value="90"
+                                onblur="if(value=='NaN') value = '90'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange_j_unt_kz(this, 0, 500);" autocomplete="off" />
+                        </div>
+                        <div class="field">
+                            <strong>Температура экрана в нормальном режиме (до КЗ), град.: </strong>
+                            <input type="text" id="kab_te_unt_kz" name="kab_te_unt_kz" class="lala" size="2" value="80"
+                                onblur="if(value=='NaN') value = '80'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange_e_unt_kz(this, 0, 500);" autocomplete="off" />
+                        </div>
+                        <hr>
+
+
+                        <div class="field">
+                            <strong>Предельно допустимая температура жилы, град.:</strong>
+                            <input type="text" id="kab_tj_bef_kz" name="kab_tj_bef_kz" class="lala" size="2" value="250"
+                                onblur="if(value=='NaN') value = '250'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange_j_bef_kz(this, 0, 500);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Предельно допустимая температура экрана, град.:</strong>
+                            <input type="text" id="kab_te_bef_kz" name="kab_te_bef_kz" class="lala" size="2" value="350"
+                                onblur="if(value=='NaN') value = '350'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange_e_bef_kz(this, 0, 500);" autocomplete="off" />
+                        </div>
+
+                        <hr>
+                        <div class="field">
+                            <strong>Длительно допустимая температура изоляции, град.:</strong>
+                            <input type="text" id="kab_t_izol" name="kab_t_izol" class="lala" size="2" value="90"
+                                onblur="if(value=='NaN') value = '90'" onfocus="if(value=='0') value = '0'"
+                                onchange="handleChange(this, 0, 500);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Относит. диэлектр. проницаемость изоляции, о.е.: </strong>
+                            <input type="text" id="kab_dpi" name="kab_dpi" class="lala" size="2" value="2.5"
+                                onblur="if(value=='NaN') value = '2.5'" onfocus="if(value=='0') value = '1'"
+                                onchange="handleChange(this, 1, 1000);" autocomplete="off" />
+                        </div>
+
+                        <div class="field">
+                            <strong>Тангенс угла диэлектрических потерь изоляции, о.е.: </strong>
+                            <input type="text" id="kab_tan_a" name="kab_tan_a" class="lala" size="2" value="0.001"
+                                onblur="if(value=='NaN') value = '0.001'" onfocus="if(value=='0') value = '0.000001'"
+                                onchange="handleChange(this, 0.0001, 100);" autocomplete="off" />
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <hr>
+
+                <input type="button" id="clear_kab" name="clear_kab" value="Очистить исходные данные"
+                    onclick="clear_kab_()">
+
+            </div>
+
+        </form>
+        <div id="div_0">
+            <div>
+                <h3>ПРОГРАММА "КАБЕЛЬ"</h3>
+            </div>
+            <hr>
+            <div class="field">
+
+                <strong>Код активации:</strong>
+                <input type="password" id="kod_d" name="kod_d" size="14" value="" onblur="if(value=='NaN') value = ''"
+                    placeholder="Введите код" autocomplete="on" />
+                <input type="button" id="ativated" value="Ввести" />
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Получить код активации: </strong>
+                <input type="button" id="kod_take" class="js-show-form" name="kod_take" size="14"  value="Получить" autocomplete="on" />
+                <div class="field__form js-form-container">
+                    <strong>Введите данные:</strong>
+                    <form class="js-form">
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <input id="NAME" name="NAME" placeholder="ФИО" required>
+                        <input type="tel" id="TEL" name="TEL" placeholder="Телефон" required>
+                        <input type="email" id="EMAIL" name="EMAIL" placeholder="EMail" required>
+                        <input id="CITY" name="CITY" placeholder="Город" required>
+                        <input id="COMPANY" name="COMPANY" placeholder="Компания" required>
+                        <input id="POSITION" name="POSITION" placeholder="Должность" required>
+                        <button class="js-form-btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="field">
+                <strong>Запросить консультацию разработчика: </strong>
+                <input type="button" id="konsul" name="konsul" size="14" onblur="if(value=='NaN') value = ''"
+                value="Запросить" onclick="window.open('http://mvdm.ru/');" autocomplete="on" />
+                <hr>
+                </div>  
+
+                <p align="justify">Программа "КАБЕЛЬ" предназначена для
+                    помощи в выборе сечений жил и экранов
+                    кабельных линий номинального напряжения
+                    до 500 кВ, выполненных однофазными или
+                    трехфазными кабелями.</p>
+
+                <p align="justify">После задания исходных данных программа
+                    выполняет тепловой расчет в нормальном
+                    режиме и при коротком замыкании (КЗ), а
+                    также делает проверку падения напряжения
+                    вдоль линии. Выбор оптимальных сечений
+                    жил и экранов осуществляется пользователем
+                    с учетом названных влияющих факторов.
+                    Расчеты в программе носят характер оценок.</p>
+                
+
+
+
+                <hr>
+
+            </div>
+
+
+        </div>
+
+        <script type="text/javascript" src="js/form.js"></script>
 </body>
+
 </html>

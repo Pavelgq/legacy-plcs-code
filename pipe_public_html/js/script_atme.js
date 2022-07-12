@@ -1,3 +1,5 @@
+var url = "https://calcdata.energotek.ru/";
+
 var page = 0;
 var tr_princ = 0;
 var tr_grunt = 0;
@@ -222,7 +224,7 @@ function mapJson(form, data) {
       $element.val("");
     }
   }
-  kod_root();
+  // kod_root();
   math_kt_dekv();
   math_fr_modul();
   tr1_qg_();
@@ -266,6 +268,10 @@ function data2blob(data, isBase64) {
 }
 
 function loadFile(e) {
+  if (!kod_status) {
+    alert("Сначала необходимо ввести код активации");
+    return;
+  }
   var file = e.target.files[0];
   var reader = new FileReader();
   reader.addEventListener("load", function () {
@@ -311,6 +317,9 @@ function onblur() {
 }
 
 function vibor_file() {
+  if (!kod_status) {
+    return;
+  }
   var k = $("#fileToLoad").val().replace("C:\\fakepath\\", "");
   if ($("#fileToLoad").val() == "") {
     alert("Файл не выбран" + k);
@@ -320,6 +329,7 @@ function vibor_file() {
 }
 
 function loadpage() {
+  checkAccept();
   $("#add").on("click", add);
   $("#save").on("click", save);
 
@@ -739,21 +749,16 @@ function loadpage() {
 }
 
 function math_all() {
-  console.log("math...");
   if (kod_status) {
     var ge_1 = get_tr_();
     var ge_2 = get_gnb_();
     if (get_tr_() && typeof get_tr_() === "number") {
-      /*math_kt_dekv();
-        math_kt_dv_();
-        math_fr_modul();*/
-
       tr1_qt_();
 
       tr1_SN_();
 
       tr1_qg_();
-      tr1_qt_();
+      // tr1_qt_();
       tr1_e_();
 
       const data = getJson($("form"));
@@ -764,11 +769,6 @@ function math_all() {
       sendActionData("calculation", "No name", JSON.parse(data), kt_d, kt_n);
     }
     if (get_gnb_() && typeof get_gnb_() === "number") {
-      /*
-        math_gn_dekv();
-        math_gn_dv_();
-        math_gn_d_min();
-        */
       math_gnb1_dekv();
       math_gnb1_Hr();
       math_gnb1_F();
@@ -778,29 +778,6 @@ function math_all() {
     math_kt_dekv();
     math_kt_dv_();
     math_fr_modul();
-    //if ($("#div_3").css('display') != 'none' || $("#div_4").css('display') != 'none'){
-    /*
-        math_kt_dekv();
-        math_kt_dv_();
-        tr1_qt_();
-        math_fr_modul();
-        tr1_SN_();
-
-        tr1_qg_();
-        tr1_qt_();
-        tr1_e_();
-
-        math_gn_dekv();
-        math_gn_dv_();
-        math_gn_d_min();
-        math_gnb1_dekv();
-        math_gnb1_Hr();
-        math_gnb1_F();
-        gnb1_e_();
-
-        math_gnb1_qr_min();
-        */
-    //}
   } else {
     alert("Код доступа не активен");
   }
@@ -1461,7 +1438,8 @@ function math_gnb1_SN_mas() {
   while (standart_SN[i] < gnb1_SN_) {
     i++;
   }
-  var rrr = document.getElementById("gnb1_SN_mas").options[0].text;
+  // var rrr = document.getElementById("gnb1_SN_mas").options[0].text;
+  console.log("select gnb1_SN", document.getElementById("gnb1_SN_mas"));
   if (
     index_st_gn_SN != i ||
     index_st_gn_SN == 0 ||
@@ -1473,7 +1451,7 @@ function math_gnb1_SN_mas() {
     }
 
     for (var j = i; j < 7; ++j) {
-      $("#gnb1_SN_mas").find("option:last").add();
+      // $("#gnb1_SN_mas").find("option:last").add();
       var option1 = $("<option/>", {
         value: "gnb1_SN_mas" + j,
         text: standart_SN[j],
@@ -2022,11 +2000,62 @@ function clear_gnb_() {
   option1.appendTo($("#gnb1_SN_mas"));
 }
 
-function decoder() {
+function oldDecoder() {
   var my_serial = $("#kod_d").val();
-  // let url = `http://localhost:8080/api/v1/accept/check/${my_serial}`;
-  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/accept/check/${my_serial}`;
-  let promise = fetch(url);
+  var now = new Date();
+  var tYear = now.getFullYear();
+  var tMon = now.getMonth();
+  var tDay = now.getDate();
+  var date = my_serial.substring(0, my_serial.length - 6);
+
+  var id_progr = parseInt(
+    my_serial.substring(my_serial.length - 6, my_serial.length - 3)
+  );
+
+  var id_user = parseInt(my_serial.substring(my_serial.length - 3));
+
+  var yourNumber = parseInt(date, 16);
+  if (yourNumber % 87 == 0) {
+    yourNumber = yourNumber / 87;
+  } else {
+    return false;
+  }
+  var youYear = yourNumber % 10000;
+  var youMon = Math.floor((yourNumber / 10000) % 100);
+  var youDay = Math.floor((yourNumber / 1000000) % 10000);
+
+  if (id_progr == 114) {
+    if (youYear > tYear) {
+      return true;
+    } else if (youYear == tYear) {
+      if (youMon > tMon + 1) {
+        return true;
+      } else if (youMon == tMon + 1) {
+        if (youDay >= tDay) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+function decoder() {
+  if (oldDecoder) {
+    alert("Код принят");
+    kod_status = true;
+    return;
+  }
+  var my_serial = $("#kod_d").val();
+  let fullUrl = url + `api/v1/accept/check/${my_serial}`;
+  let promise = fetch(fullUrl);
 
   promise
     .then((res) => {
@@ -2045,6 +2074,34 @@ function decoder() {
       alert(data.message);
       kod_status = false;
       return;
+    })
+    .catch((err) => {
+      alert("Неверный код");
+    });
+}
+function checkAccept() {
+  const fullUrl = url + "api/v1/accept/profile";
+  let acceptToken = localStorage.getItem("accept-token") || "";
+  let promise = fetch(fullUrl, {
+    headers: {
+      "accept-token": acceptToken,
+      "Content-Type": "application/json",
+    },
+  });
+
+  promise
+    .then((res) => {
+      console.log(res.body);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.message) {
+        kod_status = data.accept;
+        return;
+      }
+      kod_status = false;
+      return;
     });
 }
 
@@ -2057,8 +2114,7 @@ function decoder() {
  * @param {number} param2
  */
 function sendActionDataF(actionType, projName, data, param1, param2) {
-  let url = `https://hidden-inlet-89012.herokuapp.com/api/v1/action/add`;
-  // let url = "http://localhost:8080/api/v1/action/add";
+  let fullUrl = url + `api/v1/action/add`;
   let acceptToken = localStorage.getItem("accept-token") || "";
   let object = {
     project_name: projName,
@@ -2071,7 +2127,7 @@ function sendActionDataF(actionType, projName, data, param1, param2) {
     data,
   };
   console.log(object);
-  let promise = fetch(url, {
+  let promise = fetch(fullUrl, {
     method: "POST",
     body: JSON.stringify(object),
     headers: {
